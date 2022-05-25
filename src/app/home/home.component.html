@@ -1,7 +1,7 @@
 <!-- WELCOME TEXT -->
 <div class="row justify-content-center align-items-center mb-5">
     <div class="fs-32 text-center">
-        Welcome to NBU Logistics!
+        Welcome to NBU Classbook!
     </div>
 </div>
 
@@ -45,52 +45,6 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
-    </div>
-</div>
-
-<div class="row maps-row-margin justify-content-center align-items-center">
-    <div class="fs-28 text-center">
-        Where you can find us:
-    </div>
-</div>
-
-<div class="row mt-5">
-    <!-- GOOGLE MAPS -->
-    <div class="col-xl-9 mb-5">
-        <div class="google-map-wrapper">
-            <!-- WIDTH AND HEIGHT SET THROUGH GLOBAL STYLES -->
-            <google-map [width]="null" [height]="null">
-                <!-- [label]="marker.label"
-                 [title]="marker.title"
-                 [options]="marker.options" -->
-                <map-maker
-                 *ngFor="let marker of markers"
-                 [position]="marker.position"
-                 >
-                </map-maker>
-            </google-map>
-        </div>
-    </div>
-
-    <!-- ADDRESS SECTION -->
-    <div class="col-xl-3 mb-5">
-        <div class="address-wrapper p-2">
-            <div class="address-header font-weight-bold d-flex font-monsterrat justify-content-center align-items-center text-center">
-                Office locations:
-            </div>
-
-            <hr class="custom-divider my-2">
-
-            <div *ngFor="let office of offices" class="font-monsterrat fs-15">
-                <div>
-                    <span class="font-italic mr-1">Name:</span> {{ office.name }}
-                </div>
-                <div>
-                    <span class="font-italic mr-1">Address:</span> {{ office.address }}
-                </div>
-                <hr class="custom-divider my-2">
-            </div>
         </div>
     </div>
 </div>
