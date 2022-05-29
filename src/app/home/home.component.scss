@@ -5,17 +5,17 @@
     background-size: cover;
     background-repeat: no-repeat;
 
-    // &.first {
-    //     background-image: url("../../assets/logistics-3.png");
-    // }
+    &.first {
+        background-image: url("../../assets/images/dudley_opm-01.png");
+    }
 
-    // &.second {
-    //     background-image: url("../../assets/packaging-1.jpg");
-    // }
+    &.second {
+        background-image: url("../../assets/images/a-plusplus.jpg");
+    }
 
-    // &.third {
-    //     background-image: url("../../assets/team-3.jpg");
-    // }
+    &.third {
+        background-image: url("../../assets/images/image-asset.jpeg");
+    }
 }
 
 .carousel-width {
