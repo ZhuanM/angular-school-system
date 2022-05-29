@@ -1,12 +1,9 @@
-import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { BaseComponent } from '../shared/base.component';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AppState } from '../models/app-state.interface';
-import { Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as AuthActions from '../auth/store/auth.actions';
-import * as AuthSelectors from '../auth/store/auth.selectors';
 import { appLoading } from '../loader/store/loader.actions';
 import { MatRadioChange } from '@angular/material/radio';
 
@@ -19,10 +16,10 @@ import { MatRadioChange } from '@angular/material/radio';
 export class RegisterComponent extends BaseComponent {
   public hideRegisterPassword: boolean = true;
   public hideRegisterRepeatPassword: boolean = true;
-  
-  public showSecurityKeyForm: boolean = false;
-  public hideSecurityKey: boolean = true;
 
+  public classes: Array<string> = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12' ];
+  public subjects: Array<string> = [ 'Mathematics', 'Literature', 'English', 'Chemistry', 'Physics', 'Geography', 'History', 'Arts' ];
+  
   public registerForm = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
@@ -32,16 +29,76 @@ export class RegisterComponent extends BaseComponent {
       repeatPassword: new FormControl('', [Validators.required]),
     }, this.passwordConfirming),
     role: new FormControl(''),
+    school: new FormControl(''),
+    class: new FormControl(''),
+    subject: new FormControl('')
   });
   
   constructor(
     private store: Store<AppState>,
+    private cdr: ChangeDetectorRef,
   ) {
     super();
   }
 
   ngOnInit() {
-    this.registerForm.get('role').setValue('USER');
+    this.registerForm.get('role').setValue('STUDENT');
+  }
+
+  public onRadioChange(event: MatRadioChange) {
+    if (event.value == 'STUDENT') {
+      this.registerForm.get('school').clearValidators();
+      this.registerForm.get('school').setValue('');
+      this.registerForm.get('school').markAsPristine();
+      this.registerForm.get('school').markAsUntouched();
+
+      this.registerForm.get('school').setValidators(Validators.required);
+
+      this.registerForm.get('class').clearValidators();
+      this.registerForm.get('class').setValue('');
+      this.registerForm.get('class').markAsPristine();
+      this.registerForm.get('class').markAsUntouched();
+
+      this.registerForm.get('class').setValidators(Validators.required);
+    } else if (event.value == 'TEACHER') {
+      this.registerForm.get('school').clearValidators();
+      this.registerForm.get('school').setValue('');
+      this.registerForm.get('school').markAsPristine();
+      this.registerForm.get('school').markAsUntouched();
+
+      this.registerForm.get('school').setValidators(Validators.required);
+
+      this.registerForm.get('subject').clearValidators();
+      this.registerForm.get('subject').setValue('');
+      this.registerForm.get('subject').markAsPristine();
+      this.registerForm.get('subject').markAsUntouched();
+
+      this.registerForm.get('subject').setValidators(Validators.required);
+    } else if (event.value == 'PRINCIPAL') {
+      this.registerForm.get('school').clearValidators();
+      this.registerForm.get('school').setValue('');
+      this.registerForm.get('school').markAsPristine();
+      this.registerForm.get('school').markAsUntouched();
+
+      this.registerForm.get('school').setValidators(Validators.required);
+    } else if (event.value == 'PARENT') {
+      this.registerForm.get('school').clearValidators();
+      this.registerForm.get('school').setValue('');
+      this.registerForm.get('school').markAsPristine();
+      this.registerForm.get('school').markAsUntouched();
+      
+      this.registerForm.get('class').clearValidators();
+      this.registerForm.get('class').setValue('');
+      this.registerForm.get('class').markAsPristine();
+      this.registerForm.get('class').markAsUntouched();
+
+      this.registerForm.get('subject').clearValidators();
+      this.registerForm.get('subject').setValue('');
+      this.registerForm.get('subject').markAsPristine();
+      this.registerForm.get('subject').markAsUntouched();
+    }
+
+    this.cdr.detectChanges();
   }
 
   public onSubmit() {
@@ -91,17 +148,6 @@ export class RegisterComponent extends BaseComponent {
     }
 
     return email.hasError('email') ? 'Please enter a valid email' : '';
-  }
-
-  public getSecurityKeyErrorMessage() {
-    if (this.showSecurityKeyForm) {
-      let securityKey = this.registerForm.get('securityKey');
-      if (securityKey.hasError('required')) {
-        return 'Please enter your security key';
-      }
-  
-      return securityKey.hasError('securityKey') ? 'Please enter a valid security key' : '';
-    }
   }
 
   public getPasswordErrorMessage() {

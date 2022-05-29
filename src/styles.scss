@@ -55,11 +55,11 @@ body {
 
 // CHECK BUTTONS
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-    background-color: rgb(46 104 179) !important;
+    background-color: #25992e !important;
 }
 
 .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
-    background: rgb(46 104 179) !important;
+    background: #25992e !important;
 }
 
 .mat-checkbox-layout .mat-checkbox-label {
@@ -68,7 +68,7 @@ body {
 
 // MENU ITEMS
 .mat-menu-item:hover:not([disabled]) {
-    background: rgb(46 104 179) !important;
+    background: #25992e !important;
     color: white !important;
     // font-weight: 600 !important;
 }
@@ -98,34 +98,34 @@ app-login {
 
 // RADIO BUTTONS
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-    border-color: rgb(46 104 179);
+    border-color: #25992e;
 }
 
 .mat-radio-button.mat-accent .mat-radio-inner-circle {
-    background-color: rgb(46 104 179);
+    background-color: #25992e;
 }
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple {
-    background-color: rgb(46 104 179);
+    background-color: #25992e;
 }
 
 .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
-    background-color: rgb(46 104 179);
+    background-color: #25992e;
 }
 
 .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple) {
-    background-color: rgb(46 104 179);
+    background-color: #25992e;
 }
 
 // PROGRESS SPINNER
 .mat-progress-spinner circle,
 .mat-spinner circle {
-    stroke: rgb(46 104 179);
+    stroke: #25992e;
 }
 
 // PROGRESS BAR
 .mat-progress-bar-fill:after {
-    background-color: rgb(46 104 179) !important;
+    background-color: #25992e !important;
 }
 
 .mat-progress-bar-buffer {
@@ -134,15 +134,15 @@ app-login {
 
 // BUTTONS & ICONS
 .mat-flat-button.mat-accent {
-    background-color: rgb(46 104 179);
+    background-color: #25992e;
 }
 
 .mat-icon-button.mat-accent {
-    color: rgb(46 104 179);
+    color: #25992e;
 }
 
 .mat-icon.mat-accent {
-    color: rgb(46 104 179);
+    color: #25992e;
 }
 
 // SIDENAV LIST
@@ -154,7 +154,7 @@ app-login {
 .mat-action-list .mat-list-item:hover,
 .mat-action-list .mat-list-item:focus,
 .mat-action-list .mat-list-item:active {
-    background-color: rgb(46 104 179) !important;
+    background-color: #25992e !important;
     border-radius: 4px;
 }
 
@@ -214,7 +214,7 @@ mat-sidenav {
 // TABS
 .mat-tab-group.mat-primary .mat-ink-bar,
 .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-    background-color: rgb(46 104 179);
+    background-color: #25992e;
 }
 
 // SnackBar styles
@@ -241,16 +241,12 @@ mat-sidenav {
     color: white;
 }
 
-.red-color {
-    color: rgb(46 104 179);
+.green-nbu-color {
+    color: #25992e;
 }
 
-.blue-nbu-color {
-    color: rgb(46 104 179);
-}
-
-.dark-blue-nbu-color {
-    color: rgb(8 63 136);
+.dark-green-nbu-color {
+    color: #22802a;
 }
 
 .disabled-grey-color {
@@ -367,7 +363,7 @@ button {
 }
 
 .blue-nbu-button {
-    background-color: rgb(46 104 179);
+    background-color: #25992e;
 }
 
 .grey-button {

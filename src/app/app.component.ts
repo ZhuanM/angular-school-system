@@ -29,12 +29,12 @@ export class AppComponent extends BaseComponent {
   private homeURL: boolean = false;
   private loginURL: boolean = false;
   private registerURL: boolean = false;
-  private packagesURL: boolean = false;
-  private sendPackageURL: boolean = false;
-  private companyURL: boolean = false;
-  private employeesURL: boolean = false;
-  private customersURL: boolean = false;
-  private officesURL: boolean = false;
+  // private packagesURL: boolean = false;
+  // private sendPackageURL: boolean = false;
+  // private companyURL: boolean = false;
+  // private employeesURL: boolean = false;
+  // private customersURL: boolean = false;
+  // private officesURL: boolean = false;
 
   // private role: string = "ADMIN";
   // private role: string = null;
@@ -80,7 +80,7 @@ export class AppComponent extends BaseComponent {
       ];
     } else if (this.userRole == "USER") {
       this.homeURL = true;
-      this.packagesURL = false;
+      // this.packagesURL = false;
 
       this.sideNavItems = [
         {
@@ -88,16 +88,16 @@ export class AppComponent extends BaseComponent {
           text: "Home",
           clicked: this.homeURL
         },
-        {
-          icon: "inventory_2",
-          text: "Packages",
-          clicked: this.packagesURL
-        },
+        // {
+        //   icon: "inventory_2",
+        //   text: "Packages",
+        //   clicked: this.packagesURL
+        // },
       ];
     } else if (this.userRole == "COURIER") {
       this.homeURL = true;
-      this.packagesURL = false;
-      this.sendPackageURL = false;
+      // this.packagesURL = false;
+      // this.sendPackageURL = false;
 
       this.sideNavItems = [
         {
@@ -105,20 +105,20 @@ export class AppComponent extends BaseComponent {
           text: "Home",
           clicked: this.homeURL
         },
-        {
-          icon: "inventory_2",
-          text: "Packages",
-          clicked: this.packagesURL
-        }
+        // {
+        //   icon: "inventory_2",
+        //   text: "Packages",
+        //   clicked: this.packagesURL
+        // }
       ];
     } else if (this.userRole == "ADMIN") {
       this.homeURL = true;
-      this.packagesURL = false;
-      this.sendPackageURL = false;
-      this.companyURL = false;
-      this.employeesURL = false;
-      this.customersURL = false;
-      this.officesURL = false;
+      // this.packagesURL = false;
+      // this.sendPackageURL = false;
+      // this.companyURL = false;
+      // this.employeesURL = false;
+      // this.customersURL = false;
+      // this.officesURL = false;
 
       this.sideNavItems = [
         {
@@ -126,36 +126,36 @@ export class AppComponent extends BaseComponent {
           text: "Home",
           clicked: this.homeURL
         },
-        {
-          icon: "inventory_2",
-          text: "Packages",
-          clicked: this.packagesURL
-        },
-        {
-          icon: "ios_share",
-          text: "Send Package",
-          clicked: this.sendPackageURL
-        },
-        {
-          icon: "business",
-          text: "Company",
-          clicked: this.companyURL
-        },
-        {
-          icon: "engineering",
-          text: "Employees",
-          clicked: this.employeesURL
-        },
-        {
-          icon: "group",
-          text: "Customers",
-          clicked: this.customersURL
-        },
-        {
-          icon: "store",
-          text: "Offices",
-          clicked: this.officesURL
-        },
+        // {
+        //   icon: "inventory_2",
+        //   text: "Packages",
+        //   clicked: this.packagesURL
+        // },
+        // {
+        //   icon: "ios_share",
+        //   text: "Send Package",
+        //   clicked: this.sendPackageURL
+        // },
+        // {
+        //   icon: "business",
+        //   text: "Company",
+        //   clicked: this.companyURL
+        // },
+        // {
+        //   icon: "engineering",
+        //   text: "Employees",
+        //   clicked: this.employeesURL
+        // },
+        // {
+        //   icon: "group",
+        //   text: "Customers",
+        //   clicked: this.customersURL
+        // },
+        // {
+        //   icon: "store",
+        //   text: "Offices",
+        //   clicked: this.officesURL
+        // },
       ];
     }
   }
@@ -196,9 +196,9 @@ export class AppComponent extends BaseComponent {
     } else if (this.userRole == "USER") {
       if (this.location.path() == "/home") {
         this.homeURL = true;
-        this.packagesURL = false;
+        // this.packagesURL = false;
       } else if (this.location.path() == "/packages") {
-        this.packagesURL = true;
+        // this.packagesURL = true;
         this.homeURL = false;
       }
 
@@ -208,22 +208,23 @@ export class AppComponent extends BaseComponent {
           text: "Home",
           clicked: this.homeURL
         },
-        {
-          icon: "inventory_2",
-          text: "Packages",
-          clicked: this.packagesURL
-        },
+        // {
+        //   icon: "inventory_2",
+        //   text: "Packages",
+        //   clicked: this.packagesURL
+        // },
       ];
     } else if (this.userRole == "COURIER") {
       if (this.location.path() == "/home") {
         this.homeURL = true;
-        this.packagesURL = false;
-        this.sendPackageURL = false;
-      } else if (this.location.path() == "/packages") {
-        this.packagesURL = true;
-        this.homeURL = false;
-        this.sendPackageURL = false;
+        // this.packagesURL = false;
+        // this.sendPackageURL = false;
       }
+      //  else if (this.location.path() == "/packages") {
+      //   this.packagesURL = true;
+      //   this.homeURL = false;
+      //   this.sendPackageURL = false;
+      // }
 
       this.sideNavItems = [
         {
@@ -231,70 +232,71 @@ export class AppComponent extends BaseComponent {
           text: "Home",
           clicked: this.homeURL
         },
-        {
-          icon: "inventory_2",
-          text: "Packages",
-          clicked: this.packagesURL
-        }
+        // {
+        //   icon: "inventory_2",
+        //   text: "Packages",
+        //   clicked: this.packagesURL
+        // }
       ];
     } else if (this.userRole == "ADMIN") {
       if (this.location.path() == "/home") {
         this.homeURL = true;
-        this.packagesURL = false;
-        this.sendPackageURL = false;
-        this.companyURL = false;
-        this.employeesURL = false;
-        this.customersURL = false;
-        this.officesURL = false;
-      } else if (this.location.path() == "/packages") {
-        this.packagesURL = true;
-        this.homeURL = false;
-        this.sendPackageURL = false;
-        this.companyURL = false;
-        this.employeesURL = false;
-        this.customersURL = false;
-        this.officesURL = false;
-      } else if (this.location.path() == "/send_package") {
-        this.sendPackageURL = true;
-        this.homeURL = false;
-        this.packagesURL = false;
-        this.companyURL = false;
-        this.employeesURL = false;
-        this.customersURL = false;
-        this.officesURL = false;
-      } else if (this.location.path() == "/company") {
-        this.companyURL = true;
-        this.sendPackageURL = false;
-        this.homeURL = false;
-        this.packagesURL = false;
-        this.employeesURL = false;
-        this.customersURL = false;
-        this.officesURL = false;
-      } else if (this.location.path() == "/employees") {
-        this.employeesURL = true;
-        this.companyURL = false;
-        this.sendPackageURL = false;
-        this.homeURL = false;
-        this.packagesURL = false;
-        this.customersURL = false;
-        this.officesURL = false;
-      } else if (this.location.path() == "/customers") {
-        this.customersURL = true;
-        this.employeesURL = false;
-        this.companyURL = false;
-        this.sendPackageURL = false;
-        this.homeURL = false;
-        this.packagesURL = false;
-        this.officesURL = false;
-      } else if (this.location.path() == "/offices") {
-        this.officesURL = true;
-        this.customersURL = false;
-        this.employeesURL = false;
-        this.companyURL = false;
-        this.sendPackageURL = false;
-        this.homeURL = false;
-        this.packagesURL = false;
+        // this.packagesURL = false;
+        // this.sendPackageURL = false;
+        // this.companyURL = false;
+        // this.employeesURL = false;
+        // this.customersURL = false;
+        // this.officesURL = false;
       }
+      //  else if (this.location.path() == "/packages") {
+      //   this.packagesURL = true;
+      //   this.homeURL = false;
+      //   this.sendPackageURL = false;
+      //   this.companyURL = false;
+      //   this.employeesURL = false;
+      //   this.customersURL = false;
+      //   this.officesURL = false;
+      // } else if (this.location.path() == "/send_package") {
+      //   this.sendPackageURL = true;
+      //   this.homeURL = false;
+      //   this.packagesURL = false;
+      //   this.companyURL = false;
+      //   this.employeesURL = false;
+      //   this.customersURL = false;
+      //   this.officesURL = false;
+      // } else if (this.location.path() == "/company") {
+      //   this.companyURL = true;
+      //   this.sendPackageURL = false;
+      //   this.homeURL = false;
+      //   this.packagesURL = false;
+      //   this.employeesURL = false;
+      //   this.customersURL = false;
+      //   this.officesURL = false;
+      // } else if (this.location.path() == "/employees") {
+      //   this.employeesURL = true;
+      //   this.companyURL = false;
+      //   this.sendPackageURL = false;
+      //   this.homeURL = false;
+      //   this.packagesURL = false;
+      //   this.customersURL = false;
+      //   this.officesURL = false;
+      // } else if (this.location.path() == "/customers") {
+      //   this.customersURL = true;
+      //   this.employeesURL = false;
+      //   this.companyURL = false;
+      //   this.sendPackageURL = false;
+      //   this.homeURL = false;
+      //   this.packagesURL = false;
+      //   this.officesURL = false;
+      // } else if (this.location.path() == "/offices") {
+      //   this.officesURL = true;
+      //   this.customersURL = false;
+      //   this.employeesURL = false;
+      //   this.companyURL = false;
+      //   this.sendPackageURL = false;
+      //   this.homeURL = false;
+      //   this.packagesURL = false;
+      // }
 
       this.sideNavItems = [
         {
@@ -302,36 +304,36 @@ export class AppComponent extends BaseComponent {
           text: "Home",
           clicked: this.homeURL
         },
-        {
-          icon: "inventory_2",
-          text: "Packages",
-          clicked: this.packagesURL
-        },
-        {
-          icon: "ios_share",
-          text: "Send Package",
-          clicked: this.sendPackageURL
-        },
-        {
-          icon: "business",
-          text: "Company",
-          clicked: this.companyURL
-        },
-        {
-          icon: "engineering",
-          text: "Employees",
-          clicked: this.employeesURL
-        },
-        {
-          icon: "group",
-          text: "Customers",
-          clicked: this.customersURL
-        },
-        {
-          icon: "store",
-          text: "Offices",
-          clicked: this.officesURL
-        },
+        // {
+        //   icon: "inventory_2",
+        //   text: "Packages",
+        //   clicked: this.packagesURL
+        // },
+        // {
+        //   icon: "ios_share",
+        //   text: "Send Package",
+        //   clicked: this.sendPackageURL
+        // },
+        // {
+        //   icon: "business",
+        //   text: "Company",
+        //   clicked: this.companyURL
+        // },
+        // {
+        //   icon: "engineering",
+        //   text: "Employees",
+        //   clicked: this.employeesURL
+        // },
+        // {
+        //   icon: "group",
+        //   text: "Customers",
+        //   clicked: this.customersURL
+        // },
+        // {
+        //   icon: "store",
+        //   text: "Offices",
+        //   clicked: this.officesURL
+        // },
       ];
     }
   }
@@ -402,19 +404,19 @@ export class AppComponent extends BaseComponent {
             }
           }
           break;
-        case "Packages":
-          if (this.location.path() == "/packages") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['packages']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
+        // case "Packages":
+        //   if (this.location.path() == "/packages") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['packages']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
       }
     } else if (this.userRole == "COURIER") {
       switch (this.sideNavItems[index].text) {
@@ -431,19 +433,19 @@ export class AppComponent extends BaseComponent {
             }
           }
           break;
-        case "Packages":
-          if (this.location.path() == "/packages") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['packages']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
+        // case "Packages":
+        //   if (this.location.path() == "/packages") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['packages']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
       }
     } else if (this.userRole == "ADMIN") {
       switch (this.sideNavItems[index].text) {
@@ -460,84 +462,84 @@ export class AppComponent extends BaseComponent {
             }
           }
           break;
-        case "Packages":
-          if (this.location.path() == "/packages") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['packages']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
-        case "Send Package":
-          if (this.location.path() == "/send_package") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['send_package']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
-        case "Company":
-          if (this.location.path() == "/company") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['company']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
-        case "Employees":
-          if (this.location.path() == "/employees") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['employees']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
-        case "Customers":
-          if (this.location.path() == "/customers") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['customers']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
-        case "Offices":
-          if (this.location.path() == "/offices") {
-            window.location.reload();
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          } else {
-            this.router.navigate(['offices']);
-            if (this.sidenav.mode == 'over') {
-              this.closeSidenav();
-            }
-          }
-          break;
+        // case "Packages":
+        //   if (this.location.path() == "/packages") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['packages']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
+        // case "Send Package":
+        //   if (this.location.path() == "/send_package") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['send_package']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
+        // case "Company":
+        //   if (this.location.path() == "/company") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['company']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
+        // case "Employees":
+        //   if (this.location.path() == "/employees") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['employees']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
+        // case "Customers":
+        //   if (this.location.path() == "/customers") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['customers']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
+        // case "Offices":
+        //   if (this.location.path() == "/offices") {
+        //     window.location.reload();
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   } else {
+        //     this.router.navigate(['offices']);
+        //     if (this.sidenav.mode == 'over') {
+        //       this.closeSidenav();
+        //     }
+        //   }
+        //   break;
       }
     }
   }
