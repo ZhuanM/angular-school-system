@@ -31,7 +31,7 @@ export class AuthEffects {
           }),
           catchError((errorRes: HttpErrorResponse) => {
             return of(AuthActions.authFail(
-              { errorMessage: errorRes.error ? (errorRes.error.errors ? errorRes.error.errors.Username : errorRes.error.Messages[0]) : 'Invalid username and/or password' }
+              { errorMessage: 'Invalid username and/or password' }
             ));
           })
         );
@@ -99,7 +99,7 @@ export class AuthEffects {
           }),
           catchError((errorRes: HttpErrorResponse) => {
             return of(AuthActions.authFail(
-              { errorMessage: errorRes.error ? (errorRes.error.errors ? errorRes.error.errors.Email : errorRes.error.Messages[0]) : 'Invalid email and/or password' }
+              { errorMessage: 'Invalid email and/or password' }
             ));
           })
         );
