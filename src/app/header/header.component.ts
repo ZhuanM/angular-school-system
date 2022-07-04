@@ -10,7 +10,8 @@ import * as HeaderSelectors from '../header/store/header.selectors';
 import * as HeaderActions from '../header/store/header.actions';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
-import { fullName, userRole } from '../auth/store/auth.selectors';
+import { user } from '../auth/store/auth.selectors';
+import { User } from '../shared/models/user.interface';
 
 @Component({
   selector: 'app-header',
@@ -21,11 +22,9 @@ export class HeaderComponent extends BaseComponent {
   @Output() logoClicked = new EventEmitter<boolean>();
   
   readonly sidenavOpened$: Observable<boolean> = this.store.pipe(select(HeaderSelectors.sidenavOpened), takeUntil(this.destroyed$));
-  readonly userRole$: Observable<string> = this.store.pipe(select(userRole), takeUntil(this.destroyed$));
-  readonly fullName$: Observable<string> = this.store.pipe(select(fullName), takeUntil(this.destroyed$));
+  readonly user$: Observable<User> = this.store.pipe(select(user), takeUntil(this.destroyed$));
   
-  public userRole: string;
-  public fullName: string;
+  public user: User;
   
   public isMobile: boolean = false;
 
@@ -35,13 +34,11 @@ export class HeaderComponent extends BaseComponent {
     private router: Router,
   ) {
     super();
-    
-    this.userRole$.pipe(takeUntil(this.destroyed$)).subscribe(userRole => {
-      this.userRole = sessionStorage.getItem('userRole');
-    });
 
-    this.fullName$.pipe(takeUntil(this.destroyed$)).subscribe(fullName => {
-      this.fullName = sessionStorage.getItem('fullName');
+    this.user$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
+      if (user) {
+        this.user = user;
+      }
     });
   }
 

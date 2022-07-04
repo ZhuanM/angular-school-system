@@ -24,7 +24,7 @@ export const authSuccess = createAction(
   '[Auth Component] Auth Success',
   props<{
     accessToken: string,
-    username: string
+    id: number
   }>()
 );
 
@@ -38,17 +38,14 @@ export const authFail = createAction(
 export const getUser = createAction(
   '[Auth Component] Get User',
   props<{
-    username: string
+    id: number
   }>()
 );
 
 export const getUserSuccess = createAction(
   '[Auth Component] Get User Success',
   props<{
-    user: User,
-    userRole: string,
-    fullName: string,
-    username: string
+    user: User
   }>()
 );
 

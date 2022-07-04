@@ -7,9 +7,7 @@ export interface State {
   authError: string;
   isLoading: boolean;
   user: User;
-  userRole: string;
-  fullName: string;
-  username: string;
+  id: number;
 }
 
 export const initialState: State = {
@@ -17,9 +15,7 @@ export const initialState: State = {
   authError: null,
   isLoading: false,
   user: null,
-  userRole: null,
-  fullName: null,
-  username: null,
+  id: null
 }
 
 const _authReducer = createReducer(
@@ -42,6 +38,7 @@ const _authReducer = createReducer(
       authError: null,
       isLoading: false,
       accessToken: action.accessToken,
+      id: action.id
     })
   ),
 
@@ -53,9 +50,7 @@ const _authReducer = createReducer(
       authError: action.errorMessage,
       isLoading: false,
       user: null,
-      userRole: null,
-      fullName: null,
-      username: null,
+      id: null
     })
   ),
 
@@ -67,9 +62,7 @@ const _authReducer = createReducer(
       authError: null,
       isLoading: false,
       user: null,
-      userRole: null,
-      fullName: null,
-      username: null,
+      id: null
     })
   ),
 
@@ -79,9 +72,6 @@ const _authReducer = createReducer(
       ...state,
       isLoading: false,
       user: action.user,
-      userRole: action.userRole,
-      fullName: action.fullName,
-      username: action.username
     })
   ),
 );

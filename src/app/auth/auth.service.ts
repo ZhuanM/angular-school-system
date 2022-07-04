@@ -42,9 +42,9 @@ export class AuthService {
     )
   }
 
-  getUser(username: string) {
+  getUser(id: number) {
     let params = new HttpParams();
-    params = params.append('username', username);
+    params = params.append('id', id.toString());
     
     return this.http.get<any>(
       apiUrls.getUserUrl,

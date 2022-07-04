@@ -14,23 +14,7 @@ export const isLoading = createSelector(
   (state: State) => state.isLoading
 );
 
-export const userRole = createSelector(
-  authFeatureSelector,
-  (state: State) => state.userRole
-);
-
-export const fullName = createSelector(
-  authFeatureSelector,
-  (state: State) => state.fullName
-);
-
 export const user = createSelector(
   authFeatureSelector,
   (state: State) => state.user
 );
-
-export const username = createSelector(
-  authFeatureSelector,
-  (state: State) => state.username
-);
-

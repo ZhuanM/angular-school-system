@@ -65,6 +65,7 @@ import { LoginComponent } from "./login/login.component";
 import { AuthInterceptor } from "./auth/auth.interceptor";
 import { AuthEffects } from "./auth/store/auth.effects";
 import { HeaderEffects } from "./header/store/header.effects";
+import { PrincipalsEffects } from "./principals/store/principals.effects";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'fill'
@@ -88,6 +89,7 @@ const appearance: MatFormFieldDefaultOptions = {
     EffectsModule.forRoot([
       AuthEffects,
       HeaderEffects,
+      PrincipalsEffects,
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

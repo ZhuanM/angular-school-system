@@ -3,18 +3,14 @@ import { environment } from 'src/environments/environment';
 export const apiUrls = {
   // Authentication
   loginUrl: environment.apiBaseUrl + 'authenticate',
-  registerUrl: environment.apiBaseUrl + 'api/users/register',
-  // // Users
-  getUserUrl: environment.apiBaseUrl + 'api/users/user',
-  // getAllUsersUrl: environment.apiBaseUrl + 'api/users/all',
-  // updateUserUrl: environment.apiBaseUrl + 'api/users/update',
-  // deleteUserUrl: environment.apiBaseUrl + 'api/users/delete',
-  // // Packages
-  // getAllPackagesUrl: environment.apiBaseUrl + 'api/deliveries/all',
-  // getUserPackagesUrl: environment.apiBaseUrl + 'api/deliveries/all/user',
-  // createPackageUrl: environment.apiBaseUrl + 'api/deliveries/save',
-  // updatePackageUrl: environment.apiBaseUrl + 'api/deliveries/update',
-  // deletePackageUrl: environment.apiBaseUrl + 'api/deliveries/delete',
+  registerUrl: environment.apiBaseUrl + 'api/user/register',
+  // Users
+  getUserUrl: environment.apiBaseUrl + 'api/user',
+  // getAllUsersUrl: environment.apiBaseUrl + 'api/user/all',
+  // updateUserUrl: environment.apiBaseUrl + 'api/user/update',
+  // deleteUserUrl: environment.apiBaseUrl + 'api/user/delete',
+  // Principals
+  principalsUrl: environment.apiBaseUrl + 'api/director',
   // // Offices
   // getAllOfficesUrl: environment.apiBaseUrl + 'api/offices/all',
   // createOfficeUrl: environment.apiBaseUrl + 'api/offices/save',

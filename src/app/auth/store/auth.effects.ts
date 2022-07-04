@@ -21,11 +21,11 @@ export class AuthEffects {
         .pipe(
           tap(() => this.router.navigate(['/home'])),
           map(response => {
-            this.setSessionStorageData(response)
+            this.setSessionStorageData(response);
             return AuthActions.authSuccess(
               {
                 accessToken: response.jwtToken,
-                username: action.username
+                id: response.userId
               }
             )
           }),
@@ -43,21 +43,20 @@ export class AuthEffects {
   this.actions$.pipe(
     ofType(AuthActions.authSuccess),
     switchMap(action => {
-      return this.authService.getUser(action.username)
+      return this.authService.getUser(action.id)
         .pipe(
           map(response => {
-            sessionStorage.setItem('userRole', response.role);
-            sessionStorage.setItem('fullName', response.fullName);
+            sessionStorage.setItem('role', response.role);
             sessionStorage.setItem('username', response.username);
+            sessionStorage.setItem('id', response.id);
+            sessionStorage.setItem('email', response.email);
+            sessionStorage.setItem('accountLocked', response.accountLocked);
 
             this.appService.openSnackBar("Successfully logged in!", MessageType.Success);
 
             return AuthActions.getUserSuccess(
               {
-                user: response,
-                userRole: response.role,
-                fullName: response.fullName,
-                username: response.username
+                user: response
               }
             )
           })
@@ -71,10 +70,15 @@ export class AuthEffects {
     ofType(AuthActions.logout),
       tap(() => this.router.navigate(['/home'])),
       map(() => {
+        // TOKEN
         sessionStorage.removeItem('access_token');
-        sessionStorage.removeItem('userRole');
-        sessionStorage.removeItem('fullName');
+
+        // USER
+        sessionStorage.removeItem('role');
         sessionStorage.removeItem('username');
+        sessionStorage.removeItem('id');
+        sessionStorage.removeItem('email');
+        sessionStorage.removeItem('accountLocked');
 
         return AuthActions.logoutSuccess();
       }),
