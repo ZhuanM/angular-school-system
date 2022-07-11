@@ -77,6 +77,8 @@ import { SubjectsEffects } from "./subjects/store/subjects.effects";
 import { SubjectsComponent } from "./subjects/subjects.component";
 import { SchoolsComponent } from "./schools/schools.component";
 import { SchoolsEffects } from "./schools/store/schools.effects";
+import { StatisticsEffects } from "./statistics/store/statistics.effects";
+import { StatisticsComponent } from "./statistics/statistics.component";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'fill'
@@ -98,6 +100,7 @@ const appearance: MatFormFieldDefaultOptions = {
     TeachersComponent,
     SubjectsComponent,
     SchoolsComponent,
+    StatisticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +115,7 @@ const appearance: MatFormFieldDefaultOptions = {
       TeachersEffects,
       SubjectsEffects,
       SchoolsEffects,
+      StatisticsEffects,
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

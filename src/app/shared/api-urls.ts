@@ -21,6 +21,10 @@ export const apiUrls = {
   gradesUrl: environment.apiBaseUrl + 'api/grade',
   // Absences
   absencesUrl: environment.apiBaseUrl + 'api/absence',
-  // Absences
+  // Subjects
   subjectsUrl: environment.apiBaseUrl + 'api/subject',
+  // TODO Statistics
+  statisticsUrl: environment.apiBaseUrl + 'api/statistic',
+  // TODO Schedule
+  scheduleUrl: environment.apiBaseUrl + 'api/schedule',
 }
