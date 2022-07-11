@@ -102,7 +102,6 @@ export class AuthEffects {
         action.role,
         action.school,
         action.class,
-        action.subject
         )
         .pipe(
           map(authData => {

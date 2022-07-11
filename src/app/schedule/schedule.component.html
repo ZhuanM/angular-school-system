@@ -1,0 +1,17 @@
+<div class="row mb-3 fs-28">
+  Schedule:
+</div>
+<div class="row justify-content-center align-items-center">
+  <div class="col p-0">
+      <ejs-grid #normalgrid id='Normalgrid' [dataSource]='schedule' allowPaging='true' allowSorting='true' allowFiltering='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'
+       (actionBegin)='actionBegin($event)'>
+          <e-columns>
+              <e-column field='id' allowEditing='false' headerText='ID' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='idRules'></e-column>
+              <e-column field='username' headerText='Username' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='usernameRules'></e-column>
+              <e-column field='email' headerText='E-mail' width='150' textAlign='center' [validationRules]='emailRules'></e-column>
+              <e-column field='fullName' headerText='Full Name' width='150' textAlign='center' [validationRules]='fullNameRules'></e-column>
+              <e-column field='password' headerText='Password' width='150' textAlign='center' [validationRules]='passwordRules'></e-column>
+          </e-columns>
+      </ejs-grid>
+  </div>
+</div>

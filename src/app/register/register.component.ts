@@ -26,7 +26,6 @@ export class RegisterComponent extends BaseComponent {
   public hideRegisterRepeatPassword: boolean = true;
 
   public classes: Array<string> = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12' ];
-  public subjects: Array<string> = [ 'Mathematics', 'Literature', 'English', 'Chemistry', 'Physics', 'Geography', 'History', 'Arts' ];
   
   public registerForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -40,7 +39,6 @@ export class RegisterComponent extends BaseComponent {
     role: new FormControl(''),
     school: new FormControl(''),
     class: new FormControl(''),
-    subject: new FormControl('')
   });
   
   constructor(
@@ -90,23 +88,11 @@ export class RegisterComponent extends BaseComponent {
       this.registerForm.get('school').markAsUntouched();
 
       this.registerForm.get('school').setValidators(Validators.required);
-
-      this.registerForm.get('subject').clearValidators();
-      this.registerForm.get('subject').setValue('');
-      this.registerForm.get('subject').markAsPristine();
-      this.registerForm.get('subject').markAsUntouched();
-
-      this.registerForm.get('subject').setValidators(Validators.required);
     } else if (event.value == 'DIRECTOR') {
       this.registerForm.get('class').clearValidators();
       this.registerForm.get('class').setValue('');
       this.registerForm.get('class').markAsPristine();
       this.registerForm.get('class').markAsUntouched();
-
-      this.registerForm.get('subject').clearValidators();
-      this.registerForm.get('subject').setValue('');
-      this.registerForm.get('subject').markAsPristine();
-      this.registerForm.get('subject').markAsUntouched();
 
       this.registerForm.get('school').clearValidators();
       this.registerForm.get('school').setValue('');
@@ -124,11 +110,6 @@ export class RegisterComponent extends BaseComponent {
       this.registerForm.get('class').setValue('');
       this.registerForm.get('class').markAsPristine();
       this.registerForm.get('class').markAsUntouched();
-
-      this.registerForm.get('subject').clearValidators();
-      this.registerForm.get('subject').setValue('');
-      this.registerForm.get('subject').markAsPristine();
-      this.registerForm.get('subject').markAsUntouched();
     }
 
     this.cdr.detectChanges();
@@ -147,7 +128,6 @@ export class RegisterComponent extends BaseComponent {
           role: this.registerForm.get('role').value,
           school: this.registerForm.get('school').value,
           class: this.registerForm.get('class').value,
-          subject: this.registerForm.get('subject').value,
         }
       ));
     }

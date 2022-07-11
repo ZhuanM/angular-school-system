@@ -20,7 +20,6 @@ export const register = createAction(
     role: string,
     school: any,
     class: string,
-    subject: string
   }>()
 );
 

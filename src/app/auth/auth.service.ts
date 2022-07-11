@@ -32,7 +32,6 @@ export class AuthService {
     role: string,
     school: any,
     classNumber: string,
-    subject: string,
     ) {
     if (role === 'STUDENT') {
       return this.http.post<any>(
@@ -68,7 +67,6 @@ export class AuthService {
           "password": password,
           "email": email,
           "schoolId": school.id.toString(),
-          "subject": subject
         }
       )
     } else if (role === 'DIRECTOR') {

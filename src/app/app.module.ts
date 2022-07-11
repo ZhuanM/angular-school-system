@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 // Material Form Controls
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -79,6 +78,12 @@ import { SchoolsComponent } from "./schools/schools.component";
 import { SchoolsEffects } from "./schools/store/schools.effects";
 import { StatisticsEffects } from "./statistics/store/statistics.effects";
 import { StatisticsComponent } from "./statistics/statistics.component";
+import { ScheduleComponent } from "./schedule/schedule.component";
+import { ScheduleEffects } from "./schedule/store/schedule.effects";
+import { UsersComponent } from "./users/users.component";
+import { UsersEffects } from "./users/store/users.effects";
+import { SchoolComponent } from "./school/school.component";
+import { SchoolEffects } from "./school/store/school.effects";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'fill'
@@ -101,6 +106,9 @@ const appearance: MatFormFieldDefaultOptions = {
     SubjectsComponent,
     SchoolsComponent,
     StatisticsComponent,
+    ScheduleComponent,
+    UsersComponent,
+    SchoolComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,6 +124,9 @@ const appearance: MatFormFieldDefaultOptions = {
       SubjectsEffects,
       SchoolsEffects,
       StatisticsEffects,
+      ScheduleEffects,
+      UsersEffects,
+      SchoolEffects,
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

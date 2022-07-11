@@ -11,6 +11,7 @@ import * as fromSchools from '../../schools/store/schools.reducer';
 import * as fromSchool from '../../school/store/school.reducer';
 import * as fromUsers from '../../users/store/users.reducer';
 import * as fromStatistics from '../../statistics/store/statistics.reducer';
+import * as fromSchedule from '../../schedule/store/schedule.reducer';
 
 export interface AppState {
     auth: fromAuth.State,
@@ -26,4 +27,5 @@ export interface AppState {
     school: fromSchool.State,
     users: fromUsers.State,
     statistics: fromStatistics.State,
+    schedule: fromSchedule.State,
 };

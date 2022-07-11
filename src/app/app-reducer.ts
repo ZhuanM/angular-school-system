@@ -13,6 +13,7 @@ import * as fromSchools from './schools/store/schools.reducer';
 import * as fromSchool from './school/store/school.reducer';
 import * as fromUsers from './users/store/users.reducer';
 import * as fromStatistics from './statistics/store/statistics.reducer';
+import * as fromSchedule from './schedule/store/schedule.reducer';
 
 export const appReducer: ActionReducerMap<AppState> = {
   auth: fromAuth.authReducer,
@@ -28,4 +29,5 @@ export const appReducer: ActionReducerMap<AppState> = {
   school: fromSchool.schoolReducer,
   users: fromUsers.usersReducer,
   statistics: fromStatistics.statisticsReducer,
+  schedule: fromSchedule.scheduleReducer,
 };
