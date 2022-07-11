@@ -71,7 +71,7 @@ export class AuthService {
       )
     } else if (role === 'DIRECTOR') {
       return this.http.post<any>(
-        apiUrls.principalsUrl,
+        apiUrls.createPrincipalUrl,
         {
           "firstName": firstName,
           "lastName": lastName,

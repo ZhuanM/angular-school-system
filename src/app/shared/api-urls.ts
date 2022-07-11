@@ -13,9 +13,10 @@ export const apiUrls = {
   // Teachers
   teachersUrl: environment.apiBaseUrl + 'api/teacher',
   // Principals
+  createPrincipalUrl: environment.apiBaseUrl + 'api/director/register',
   principalsUrl: environment.apiBaseUrl + 'api/director',
   // Schools
-  schoolsUrl: environment.apiBaseUrl + 'api/director',
+  schoolsUrl: environment.apiBaseUrl + 'api/school',
   getSchoolsUrl: environment.apiBaseUrl + 'api/school/all',
   // Grades
   gradesUrl: environment.apiBaseUrl + 'api/grade',

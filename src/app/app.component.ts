@@ -41,6 +41,7 @@ export class AppComponent extends BaseComponent {
   private schoolURL: boolean = false;
   private subjectsURL: boolean = false;
   private teachersURL: boolean = false;
+  private scheduleURL: boolean = false;
 
   private role: string;
 
@@ -112,6 +113,11 @@ export class AppComponent extends BaseComponent {
           icon: "rule",
           text: "Absences",
           clicked: this.absencesURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     } else if (this.role == "PARENT") {
@@ -134,6 +140,11 @@ export class AppComponent extends BaseComponent {
           icon: "rule",
           text: "Absences",
           clicked: this.absencesURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     } else if (this.role == "TEACHER") {
@@ -168,6 +179,11 @@ export class AppComponent extends BaseComponent {
           icon: "square_foot",
           text: "Subjects",
           clicked: this.subjectsURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     }  else if (this.role == "DIRECTOR") {
@@ -220,6 +236,11 @@ export class AppComponent extends BaseComponent {
           icon: "location_city",
           text: "School",
           clicked: this.schoolURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     } else if (this.role == "ADMIN") {
@@ -266,6 +287,11 @@ export class AppComponent extends BaseComponent {
           icon: "location_city",
           text: "Schools",
           clicked: this.schoolsURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     }
@@ -309,14 +335,22 @@ export class AppComponent extends BaseComponent {
         this.homeURL = true;
         this.gradesURL = false;
         this.absencesURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/grades") {
         this.gradesURL = true;
         this.homeURL = false;
         this.absencesURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/absences") {
         this.absencesURL = true;
         this.homeURL = false;
         this.gradesURL = false;
+        this.scheduleURL = false;
+      } else if (this.location.path() == "/schedule") {
+        this.scheduleURL = true;
+        this.homeURL = false;
+        this.gradesURL = false;
+        this.absencesURL = false;
       }
 
       this.sideNavItems = [
@@ -334,6 +368,11 @@ export class AppComponent extends BaseComponent {
           icon: "rule",
           text: "Absences",
           clicked: this.absencesURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     } else if (this.role == "PARENT") {
@@ -341,14 +380,22 @@ export class AppComponent extends BaseComponent {
         this.homeURL = true;
         this.gradesURL = false;
         this.absencesURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/grades") {
         this.gradesURL = true;
         this.homeURL = false;
         this.absencesURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/absences") {
         this.absencesURL = true;
         this.homeURL = false;
         this.gradesURL = false;
+        this.scheduleURL = false;
+      } else if (this.location.path() == "/schedule") {
+        this.scheduleURL = true;
+        this.homeURL = false;
+        this.gradesURL = false;
+        this.absencesURL = false;
       }
 
       this.sideNavItems = [
@@ -366,6 +413,11 @@ export class AppComponent extends BaseComponent {
           icon: "rule",
           text: "Absences",
           clicked: this.absencesURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     } else if (this.role == "TEACHER") {
@@ -375,30 +427,42 @@ export class AppComponent extends BaseComponent {
         this.absencesURL = false;
         this.studentsURL = false;
         this.subjectsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/grades") {
         this.gradesURL = true;
         this.homeURL = false;
         this.absencesURL = false;
         this.studentsURL = false;
         this.subjectsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/absences") {
         this.absencesURL = true;
         this.homeURL = false;
         this.gradesURL = false;
         this.studentsURL = false;
         this.subjectsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/students") {
         this.studentsURL = true;
         this.homeURL = false;
         this.gradesURL = false;
         this.absencesURL = false;
         this.subjectsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/subjects") {
         this.subjectsURL = true;
         this.homeURL = false;
         this.gradesURL = false;
         this.absencesURL = false;
         this.studentsURL = false;
+        this.scheduleURL = false;
+      } else if (this.location.path() == "/schedule") {
+        this.scheduleURL = true;
+        this.homeURL = false;
+        this.gradesURL = false;
+        this.absencesURL = false;
+        this.studentsURL = false;
+        this.subjectsURL = false;
       }
 
       this.sideNavItems = [
@@ -426,6 +490,11 @@ export class AppComponent extends BaseComponent {
           icon: "square_foot",
           text: "Subjects",
           clicked: this.subjectsURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     } else if (this.role == "DIRECTOR") {
@@ -438,6 +507,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/grades") {
         this.gradesURL = true;
         this.homeURL = false;
@@ -447,6 +517,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/absences") {
         this.absencesURL = true;
         this.homeURL = false;
@@ -456,6 +527,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/students") {
         this.studentsURL = true;
         this.homeURL = false;
@@ -465,6 +537,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/teachers") {
         this.teachersURL = true;
         this.homeURL = false;
@@ -474,6 +547,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/subjects") {
         this.subjectsURL = true;
         this.homeURL = false;
@@ -483,6 +557,7 @@ export class AppComponent extends BaseComponent {
         this.teachersURL = false;
         this.statisticsURL = false;
         this.schoolURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/statistics") {
         this.statisticsURL = true;
         this.homeURL = false;
@@ -492,6 +567,7 @@ export class AppComponent extends BaseComponent {
         this.teachersURL = false;
         this.subjectsURL = false;
         this.schoolURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/school") {
         this.schoolURL = true;
         this.homeURL = false;
@@ -501,6 +577,7 @@ export class AppComponent extends BaseComponent {
         this.teachersURL = false;
         this.subjectsURL = false;
         this.statisticsURL = false;
+        this.scheduleURL = false;
       }
 
       this.sideNavItems = [
@@ -543,6 +620,11 @@ export class AppComponent extends BaseComponent {
           icon: "location_city",
           text: "School",
           clicked: this.schoolURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     } else if (this.role == "ADMIN") {
@@ -554,6 +636,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/grades") {
         this.gradesURL = true;
         this.homeURL = false;
@@ -562,6 +645,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/absences") {
         this.absencesURL = true;
         this.homeURL = false;
@@ -570,6 +654,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/users") {
         this.usersURL = true;
         this.homeURL = false;
@@ -578,6 +663,7 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.schoolsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/subjects") {
         this.subjectsURL = true;
         this.homeURL = false;
@@ -586,6 +672,7 @@ export class AppComponent extends BaseComponent {
         this.absencesURL = false;
         this.statisticsURL = false;
         this.schoolsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/statistics") {
         this.statisticsURL = true;
         this.homeURL = false;
@@ -594,6 +681,7 @@ export class AppComponent extends BaseComponent {
         this.absencesURL = false;
         this.subjectsURL = false;
         this.schoolsURL = false;
+        this.scheduleURL = false;
       } else if (this.location.path() == "/schools") {
         this.schoolsURL = true;
         this.homeURL = false;
@@ -602,6 +690,7 @@ export class AppComponent extends BaseComponent {
         this.absencesURL = false;
         this.subjectsURL = false;
         this.statisticsURL = false;
+        this.scheduleURL = false;
       }
 
       this.sideNavItems = [
@@ -639,6 +728,11 @@ export class AppComponent extends BaseComponent {
           icon: "location_city",
           text: "Schools",
           clicked: this.schoolsURL
+        },
+        {
+          icon: "calendar_month",
+          text: "Schedule",
+          clicked: this.scheduleURL
         }
       ];
     }
@@ -736,6 +830,19 @@ export class AppComponent extends BaseComponent {
             }
           }
           break;
+        case "Schedule":
+          if (this.location.path() == "/schedule") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['schedule']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
       }
     } else if (this.role == "PARENT") {
       switch (this.sideNavItems[index].text) {
@@ -773,6 +880,19 @@ export class AppComponent extends BaseComponent {
             }
           } else {
             this.router.navigate(['absences']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
+        case "Schedule":
+          if (this.location.path() == "/schedule") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['schedule']);
             if (this.sidenav.mode == 'over') {
               this.closeSidenav();
             }
@@ -841,6 +961,19 @@ export class AppComponent extends BaseComponent {
             }
           } else {
             this.router.navigate(['subjects']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
+        case "Schedule":
+          if (this.location.path() == "/schedule") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['schedule']);
             if (this.sidenav.mode == 'over') {
               this.closeSidenav();
             }
@@ -953,6 +1086,19 @@ export class AppComponent extends BaseComponent {
             }
           }
           break;
+        case "Schedule":
+          if (this.location.path() == "/schedule") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['schedule']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
       }
     } else if (this.role == "ADMIN") {
       switch (this.sideNavItems[index].text) {
@@ -1042,6 +1188,19 @@ export class AppComponent extends BaseComponent {
             }
           } else {
             this.router.navigate(['schools']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
+        case "Schedule":
+          if (this.location.path() == "/schedule") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['schedule']);
             if (this.sidenav.mode == 'over') {
               this.closeSidenav();
             }
