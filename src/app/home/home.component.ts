@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../models/app-state.interface';
 import { BaseComponent } from '../shared/base.component';
+import { AppState } from '../shared/models/app-state.interface';
 
 @Component({
   selector: 'app-home',

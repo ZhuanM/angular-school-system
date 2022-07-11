@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { ActionsSubject, Store } from '@ngrx/store';
 import * as AuthActions from '../auth/store/auth.actions';
 import { BaseComponent } from '../shared/base.component';
-import { first, takeUntil } from 'rxjs/operators';
-import { AppState } from '../models/app-state.interface';
-import { Observable } from 'rxjs';
+import { filter, first, takeUntil } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 import { select } from '@ngrx/store';
 import * as HeaderSelectors from '../header/store/header.selectors';
 import * as HeaderActions from '../header/store/header.actions';
@@ -12,6 +11,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { user } from '../auth/store/auth.selectors';
 import { User } from '../shared/models/user.interface';
+import { AppState } from '../shared/models/app-state.interface';
 
 @Component({
   selector: 'app-header',
@@ -20,11 +20,14 @@ import { User } from '../shared/models/user.interface';
 })
 export class HeaderComponent extends BaseComponent {
   @Output() logoClicked = new EventEmitter<boolean>();
+
+  private subscription = new Subscription();
   
   readonly sidenavOpened$: Observable<boolean> = this.store.pipe(select(HeaderSelectors.sidenavOpened), takeUntil(this.destroyed$));
   readonly user$: Observable<User> = this.store.pipe(select(user), takeUntil(this.destroyed$));
   
-  public user: User;
+  public role: string;
+  public username: string;
   
   public isMobile: boolean = false;
 
@@ -32,14 +35,20 @@ export class HeaderComponent extends BaseComponent {
     private store: Store<AppState>,
     private observer: BreakpointObserver,
     private router: Router,
+    private actionsSubject$: ActionsSubject,
   ) {
     super();
 
     this.user$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
-      if (user) {
-        this.user = user;
-      }
+      this.role = sessionStorage.getItem('role');
+      this.username = sessionStorage.getItem('username');
     });
+
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Auth Component] Logout Success'))
+      .subscribe(() => {
+        this.role = sessionStorage.getItem('role');
+        this.username = sessionStorage.getItem('username');
+      }));
   }
 
   ngOnInit() {
@@ -80,5 +89,9 @@ export class HeaderComponent extends BaseComponent {
       
       this.openSidenav();
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

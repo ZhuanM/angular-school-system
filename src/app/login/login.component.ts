@@ -4,10 +4,10 @@ import { Store, select } from '@ngrx/store';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as AuthActions from '../auth/store/auth.actions';
 import * as AuthSelectors from '../auth/store/auth.selectors';
-import { AppState } from '../models/app-state.interface';
 import { takeUntil } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { appLoading } from '../loader/store/loader.actions';
+import { AppState } from '../shared/models/app-state.interface';
 
 @Component({
   selector: 'app-login',

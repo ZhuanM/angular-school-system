@@ -15,9 +15,17 @@
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
               <mat-form-field class="w-100">
-                <mat-label>Full name</mat-label>
-                <input type="fullName" matInput formControlName="fullName" required>
-                <mat-error>{{getRegisterFullNameErrorMessage()}}</mat-error>
+                <mat-label>First name</mat-label>
+                <input type="firstName" matInput formControlName="firstName" required>
+                <mat-error>{{getRegisterFirstNameErrorMessage()}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="mb-3">
+              <mat-form-field class="w-100">
+                <mat-label>Last name</mat-label>
+                <input type="lastName" matInput formControlName="lastName" required>
+                <mat-error>{{getRegisterLastNameErrorMessage()}}</mat-error>
               </mat-form-field>
             </div>
 
@@ -69,7 +77,7 @@
                 <mat-radio-button class="mr-5" value="TEACHER">
                   Teacher
                 </mat-radio-button>
-                <mat-radio-button value="PRINCIPAL">
+                <mat-radio-button value="DIRECTOR">
                   Principal
                 </mat-radio-button>
               </mat-radio-group>
@@ -79,7 +87,11 @@
               <div class="mb-3">
                 <mat-form-field class="w-100">
                   <mat-label>School</mat-label>
-                  <input type="text" matInput formControlName="school" required>
+                  <mat-select name="school" formControlName="school" required>
+                    <mat-option *ngFor="let school of schools" [value]="school">
+                      {{school.name}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
 
@@ -99,7 +111,11 @@
               <div class="mb-3">
                 <mat-form-field class="w-100">
                   <mat-label>School</mat-label>
-                  <input type="text" matInput formControlName="school" required>
+                  <mat-select name="school" formControlName="school" required>
+                    <mat-option *ngFor="let school of schools" [value]="school">
+                      {{school.name}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
 
@@ -115,11 +131,15 @@
               </div>
             </div>
 
-            <div *ngIf="registerForm.controls.role.value === 'PRINCIPAL'">
+            <div *ngIf="registerForm.controls.role.value === 'DIRECTOR'">
               <div class="mb-3">
                 <mat-form-field class="w-100">
                   <mat-label>School</mat-label>
-                  <input type="text" matInput formControlName="school" required>
+                  <mat-select name="school" formControlName="school" required>
+                    <mat-option *ngFor="let school of schools" [value]="school">
+                      {{school.name}}
+                    </mat-option>
+                  </mat-select>
                 </mat-form-field>
               </div>
             </div>

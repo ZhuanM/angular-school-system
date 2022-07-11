@@ -24,33 +24,77 @@ export class AuthService {
   }
 
   register(
-    email: string,
+    firstName: string,
+    lastName: string,
+    username: string,
     password: string,
-    fullName: string,
+    email: string,
     role: string,
-    username: string
+    school: any,
+    classNumber: string,
+    subject: string,
     ) {
-    return this.http.post<any>(
-      apiUrls.registerUrl,
-      {
-        "email": email,
-        "fullName": fullName,
-        "password": password,
-        "role": role,
-        "username": username,
-      }
-    )
+    if (role === 'STUDENT') {
+      return this.http.post<any>(
+        apiUrls.studentsUrl,
+        {
+          "firstName": firstName,
+          "lastName": lastName,
+          "username": username,
+          "password": password,
+          "email": email,
+          "schoolId": school.id.toString(),
+          "classId": classNumber
+        }
+      )
+    } else if (role === 'PARENT') {
+      return this.http.post<any>(
+        apiUrls.parentsUrl,
+        {
+          "firstName": firstName,
+          "lastName": lastName,
+          "username": username,
+          "password": password,
+          "email": email,
+        }
+      )
+    } else if (role === 'TEACHER') {
+      return this.http.post<any>(
+        apiUrls.teachersUrl,
+        {
+          "firstName": firstName,
+          "lastName": lastName,
+          "username": username,
+          "password": password,
+          "email": email,
+          "schoolId": school.id.toString(),
+          "subject": subject
+        }
+      )
+    } else if (role === 'DIRECTOR') {
+      return this.http.post<any>(
+        apiUrls.principalsUrl,
+        {
+          "firstName": firstName,
+          "lastName": lastName,
+          "username": username,
+          "password": password,
+          "email": email,
+          "schoolId": school.id.toString(),
+        }
+      )
+    }
   }
 
   getUser(id: number) {
-    let params = new HttpParams();
-    params = params.append('id', id.toString());
-    
     return this.http.get<any>(
-      apiUrls.getUserUrl,
-      {
-        params: params
-      }
+      apiUrls.usersUrl + '/' + id.toString() + ''
+    )
+  }
+
+  getSchools() {
+    return this.http.get<any>(
+      apiUrls.getSchoolsUrl
     )
   }
 }

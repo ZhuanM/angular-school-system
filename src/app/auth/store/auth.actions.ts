@@ -12,11 +12,15 @@ export const login = createAction(
 export const register = createAction(
   '[Auth Component] Register',
   props<{
-    email: string,
+    firstName: string,
+    lastName: string,
+    username: string,
     password: string,
-    fullName: string,
+    email: string,
     role: string,
-    username: string
+    school: any,
+    class: string,
+    subject: string
   }>()
 );
 
@@ -46,6 +50,17 @@ export const getUserSuccess = createAction(
   '[Auth Component] Get User Success',
   props<{
     user: User
+  }>()
+);
+
+export const getSchools = createAction(
+  '[Auth Component] Get Schools'
+);
+
+export const getSchoolsSuccess = createAction(
+  '[Auth Component] Get Schools Success',
+  props<{
+    schools: Array<any>
   }>()
 );
 

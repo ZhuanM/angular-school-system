@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from 'src/app/models/app-state.interface';
+import { AppState } from 'src/app/shared/models/app-state.interface';
 import { State } from './auth.reducer'
 
 const authFeatureSelector = createFeatureSelector<AppState, State>('auth');
@@ -17,4 +17,9 @@ export const isLoading = createSelector(
 export const user = createSelector(
   authFeatureSelector,
   (state: State) => state.user
+);
+
+export const schools = createSelector(
+  authFeatureSelector,
+  (state: State) => state.schools
 );

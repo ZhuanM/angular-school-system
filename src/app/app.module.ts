@@ -65,7 +65,18 @@ import { LoginComponent } from "./login/login.component";
 import { AuthInterceptor } from "./auth/auth.interceptor";
 import { AuthEffects } from "./auth/store/auth.effects";
 import { HeaderEffects } from "./header/store/header.effects";
-import { PrincipalsEffects } from "./principals/store/principals.effects";
+import { GradesComponent } from "./grades/grades.component";
+import { GradesEffects } from "./grades/store/grades.effects";
+import { AbsencesEffects } from "./absences/store/absences.effects";
+import { AbsencesComponent } from "./absences/absences.component";
+import { StudentsComponent } from "./students/students.component";
+import { StudentsEffects } from "./students/store/students.effects";
+import { TeachersComponent } from "./teachers/teachers.component";
+import { TeachersEffects } from "./teachers/store/teachers.effects";
+import { SubjectsEffects } from "./subjects/store/subjects.effects";
+import { SubjectsComponent } from "./subjects/subjects.component";
+import { SchoolsComponent } from "./schools/schools.component";
+import { SchoolsEffects } from "./schools/store/schools.effects";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'fill'
@@ -81,6 +92,12 @@ const appearance: MatFormFieldDefaultOptions = {
     RegisterComponent,
     NotFoundComponent,
     LoaderComponent,
+    GradesComponent,
+    AbsencesComponent,
+    StudentsComponent,
+    TeachersComponent,
+    SubjectsComponent,
+    SchoolsComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +106,12 @@ const appearance: MatFormFieldDefaultOptions = {
     EffectsModule.forRoot([
       AuthEffects,
       HeaderEffects,
-      PrincipalsEffects,
+      GradesEffects,
+      AbsencesEffects,
+      StudentsEffects,
+      TeachersEffects,
+      SubjectsEffects,
+      SchoolsEffects,
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

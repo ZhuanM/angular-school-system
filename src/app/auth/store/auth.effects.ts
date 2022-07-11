@@ -7,8 +7,8 @@ import { AppService } from '../../app.service';
 import * as AuthActions from './auth.actions';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Auth } from 'src/app/models/auth.interface';
-import { MessageType } from 'src/app/models/message-type.enum';
+import { MessageType } from 'src/app/shared/models/message-type.enum';
+import { Auth } from 'src/app/shared/models/auth.interface';
 
 
 @Injectable()
@@ -51,6 +51,7 @@ export class AuthEffects {
             sessionStorage.setItem('id', response.id);
             sessionStorage.setItem('email', response.email);
             sessionStorage.setItem('accountLocked', response.accountLocked);
+            sessionStorage.setItem('schoolId', response.schoolId);
 
             this.appService.openSnackBar("Successfully logged in!", MessageType.Success);
 
@@ -91,12 +92,18 @@ export class AuthEffects {
     switchMap(action => {
       const username = action.username;
       const password = action.password;
+      
       return this.authService.register(
-        action.email,
+        action.firstName,
+        action.lastName,
+        action.username,
         action.password,
-        action.fullName,
+        action.email,
         action.role,
-        action.username)
+        action.school,
+        action.class,
+        action.subject
+        )
         .pipe(
           map(authData => {
             return AuthActions.login({username: username, password: password})
@@ -105,6 +112,20 @@ export class AuthEffects {
             return of(AuthActions.authFail(
               { errorMessage: 'Invalid email and/or password' }
             ));
+          })
+        );
+      })
+    )
+  );
+
+  getSchools$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(AuthActions.getSchools),
+    switchMap(action => {
+      return this.authService.getSchools()
+        .pipe(
+          map(data => {
+            return AuthActions.getSchoolsSuccess({schools: data})
           })
         );
       })

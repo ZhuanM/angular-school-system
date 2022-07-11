@@ -8,6 +8,7 @@ export interface State {
   isLoading: boolean;
   user: User;
   id: number;
+  schools: Array<any>;
 }
 
 export const initialState: State = {
@@ -15,7 +16,8 @@ export const initialState: State = {
   authError: null,
   isLoading: false,
   user: null,
-  id: null
+  id: null,
+  schools: null,
 }
 
 const _authReducer = createReducer(
@@ -72,6 +74,14 @@ const _authReducer = createReducer(
       ...state,
       isLoading: false,
       user: action.user,
+    })
+  ),
+
+  on(
+    AuthActions.getSchoolsSuccess,
+    (state, action) => ({
+      ...state,
+      schools: action.schools,
     })
   ),
 );

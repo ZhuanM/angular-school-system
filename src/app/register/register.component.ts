@@ -1,11 +1,15 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { BaseComponent } from '../shared/base.component';
-import { Store } from '@ngrx/store';
-import { AppState } from '../models/app-state.interface';
+import { select, Store } from '@ngrx/store';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import * as AuthActions from '../auth/store/auth.actions';
+import * as AuthSelectors from '../auth/store/auth.selectors';
 import { appLoading } from '../loader/store/loader.actions';
 import { MatRadioChange } from '@angular/material/radio';
+import { getSchools } from '../auth/store/auth.actions';
+import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { AppState } from '../shared/models/app-state.interface';
 
 
 @Component({
@@ -14,6 +18,10 @@ import { MatRadioChange } from '@angular/material/radio';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent extends BaseComponent {
+  readonly schools$: Observable<Array<any>> = this.store.pipe(select(AuthSelectors.schools), takeUntil(this.destroyed$));
+
+  public schools: Array<any> = [];
+
   public hideRegisterPassword: boolean = true;
   public hideRegisterRepeatPassword: boolean = true;
 
@@ -21,7 +29,8 @@ export class RegisterComponent extends BaseComponent {
   public subjects: Array<string> = [ 'Mathematics', 'Literature', 'English', 'Chemistry', 'Physics', 'Geography', 'History', 'Arts' ];
   
   public registerForm = new FormGroup({
-    fullName: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     passwords: new FormGroup({
@@ -39,6 +48,15 @@ export class RegisterComponent extends BaseComponent {
     private cdr: ChangeDetectorRef,
   ) {
     super();
+
+    this.store.dispatch(appLoading({ loading: true }));
+    this.store.dispatch(getSchools());
+
+    this.schools$.pipe(takeUntil(this.destroyed$)).subscribe(schools => {
+      if (schools) {
+        this.schools = schools;
+      }
+    });
   }
 
   ngOnInit() {
@@ -61,6 +79,11 @@ export class RegisterComponent extends BaseComponent {
 
       this.registerForm.get('class').setValidators(Validators.required);
     } else if (event.value == 'TEACHER') {
+      this.registerForm.get('class').clearValidators();
+      this.registerForm.get('class').setValue('');
+      this.registerForm.get('class').markAsPristine();
+      this.registerForm.get('class').markAsUntouched();
+
       this.registerForm.get('school').clearValidators();
       this.registerForm.get('school').setValue('');
       this.registerForm.get('school').markAsPristine();
@@ -74,7 +97,17 @@ export class RegisterComponent extends BaseComponent {
       this.registerForm.get('subject').markAsUntouched();
 
       this.registerForm.get('subject').setValidators(Validators.required);
-    } else if (event.value == 'PRINCIPAL') {
+    } else if (event.value == 'DIRECTOR') {
+      this.registerForm.get('class').clearValidators();
+      this.registerForm.get('class').setValue('');
+      this.registerForm.get('class').markAsPristine();
+      this.registerForm.get('class').markAsUntouched();
+
+      this.registerForm.get('subject').clearValidators();
+      this.registerForm.get('subject').setValue('');
+      this.registerForm.get('subject').markAsPristine();
+      this.registerForm.get('subject').markAsUntouched();
+
       this.registerForm.get('school').clearValidators();
       this.registerForm.get('school').setValue('');
       this.registerForm.get('school').markAsPristine();
@@ -106,11 +139,15 @@ export class RegisterComponent extends BaseComponent {
       this.store.dispatch(appLoading({ loading: true }));
       this.store.dispatch(AuthActions.register(
         {
-          fullName: this.registerForm.get('fullName').value,
+          firstName: this.registerForm.get('firstName').value,
+          lastName: this.registerForm.get('lastName').value,
           username: this.registerForm.get('username').value,
           email: this.registerForm.get('email').value,
           password: this.registerForm.get('passwords')?.get('password').value,
-          role: this.registerForm.get('role').value
+          role: this.registerForm.get('role').value,
+          school: this.registerForm.get('school').value,
+          class: this.registerForm.get('class').value,
+          subject: this.registerForm.get('subject').value,
         }
       ));
     }
@@ -123,13 +160,22 @@ export class RegisterComponent extends BaseComponent {
   }
   
   // ERRORS
-  public getRegisterFullNameErrorMessage() {
-    let fullName = this.registerForm.get('fullName');
-    if (fullName.hasError('required')) {
-      return 'Please enter your full name';
+  public getRegisterFirstNameErrorMessage() {
+    let firstName = this.registerForm.get('firstName');
+    if (firstName.hasError('required')) {
+      return 'Please enter your first name';
     }
 
-    return fullName.hasError('fullName') ? 'Please enter a valid full name' : '';
+    return firstName.hasError('firstName') ? 'Please enter a valid first name' : '';
+  }
+
+  public getRegisterLastNameErrorMessage() {
+    let lastName = this.registerForm.get('lastName');
+    if (lastName.hasError('required')) {
+      return 'Please enter your last name';
+    }
+
+    return lastName.hasError('lastName') ? 'Please enter a valid last name' : '';
   }
 
   public getRegisterUsernameErrorMessage() {
