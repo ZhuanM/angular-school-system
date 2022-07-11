@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-center unselectable mb-4">
           <img class="login-logo" src="../../assets/logo/nbu-classbook-black.png" alt="NBU Classbook Logo">
         </div>
-        <div class="fs-48 main-title-text mb-3 font-metropolis-semi-bold">
+        <div class="fs-48 main-title-text mb-3">
           Login
         </div>
         <div class="fs-16 under-main-text sm-spaced-text mb-5">
@@ -30,11 +30,11 @@
             </mat-form-field>
           </div>
 
-          <button mat-raised-button class="w-100 blue-nbu-button white-color text-uppercase lg-spaced-text login-button-text font-metropolis-medium" [disabled]="!loginForm.valid" type="submit">
+          <button mat-raised-button class="w-100 blue-nbu-button white-color text-uppercase lg-spaced-text login-button-text" [disabled]="!loginForm.valid" type="submit">
             Login
           </button>
 
-          <div *ngIf="(authError$ | async)" class="w-100 lg-spaced-text font-metropolis-medium login-error-wrapper p-2 d-flex justify-content-center align-items-center mt-4">
+          <div *ngIf="(authError$ | async)" class="w-100 lg-spaced-text login-error-wrapper p-2 d-flex justify-content-center align-items-center mt-4">
             Incorrect Username Address and/or Password!
           </div>
         </form>
