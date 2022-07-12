@@ -46,6 +46,7 @@ export class AppComponent extends BaseComponent {
   private principalsURL: boolean = false;
 
   private role: string;
+  private isAccountLocked: string;
 
   constructor(
     private observer: BreakpointObserver,
@@ -57,6 +58,8 @@ export class AppComponent extends BaseComponent {
     super();
 
     this.updateSidenavItems();
+
+    this.isAccountLocked = sessionStorage.getItem('accountLocked');
     
     this.user$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
       this.role = sessionStorage.getItem('role');
@@ -108,17 +111,20 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     } else if (this.role == "PARENT") {
@@ -135,17 +141,20 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     } else if (this.role == "TEACHER") {
@@ -164,27 +173,32 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "group",
           text: "Students",
-          clicked: this.studentsURL
+          clicked: this.studentsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "square_foot",
           text: "Subjects",
-          clicked: this.subjectsURL
+          clicked: this.subjectsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     }  else if (this.role == "DIRECTOR") {
@@ -206,42 +220,50 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "group",
           text: "Students",
-          clicked: this.studentsURL
+          clicked: this.studentsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "school",
           text: "Teachers",
-          clicked: this.teachersURL
+          clicked: this.teachersURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "square_foot",
           text: "Subjects",
-          clicked: this.subjectsURL
+          clicked: this.subjectsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "monitoring",
           text: "Statistics",
-          clicked: this.statisticsURL
+          clicked: this.statisticsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "location_city",
           text: "School",
-          clicked: this.schoolURL
+          clicked: this.schoolURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     } else if (this.role == "ADMIN") {
@@ -383,17 +405,20 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     } else if (this.role == "PARENT") {
@@ -428,17 +453,20 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     } else if (this.role == "TEACHER") {
@@ -495,27 +523,32 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "group",
           text: "Students",
-          clicked: this.studentsURL
+          clicked: this.studentsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "square_foot",
           text: "Subjects",
-          clicked: this.subjectsURL
+          clicked: this.subjectsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     } else if (this.role == "DIRECTOR") {
@@ -610,42 +643,50 @@ export class AppComponent extends BaseComponent {
         {
           icon: "grade",
           text: "Grades",
-          clicked: this.gradesURL
+          clicked: this.gradesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "rule",
           text: "Absences",
-          clicked: this.absencesURL
+          clicked: this.absencesURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "group",
           text: "Students",
-          clicked: this.studentsURL
+          clicked: this.studentsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "school",
           text: "Teachers",
-          clicked: this.teachersURL
+          clicked: this.teachersURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "square_foot",
           text: "Subjects",
-          clicked: this.subjectsURL
+          clicked: this.subjectsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "monitoring",
           text: "Statistics",
-          clicked: this.statisticsURL
+          clicked: this.statisticsURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "location_city",
           text: "School",
-          clicked: this.schoolURL
+          clicked: this.schoolURL,
+          isAccountLocked: this.isAccountLocked
         },
         {
           icon: "calendar_month",
           text: "Schedule",
-          clicked: this.scheduleURL
+          clicked: this.scheduleURL,
+          isAccountLocked: this.isAccountLocked
         }
       ];
     } else if (this.role == "ADMIN") {

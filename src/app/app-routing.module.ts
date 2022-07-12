@@ -7,7 +7,6 @@ import { AutoLoginGuard } from './auth/auto-login.guard';
 import { PrincipalGuard } from './auth/principal.guard';
 import { StudentsPageGuard } from './auth/students-page.guard';
 import { SubjectsPageGuard } from './auth/subjects-page.guard';
-import { TeacherGuard } from './auth/teacher.guard';
 import { TeachersPageGuard } from './auth/teachers-page.guard';
 import { GradesComponent } from './grades/grades.component';
 import { HomeComponent } from './home/home.component';

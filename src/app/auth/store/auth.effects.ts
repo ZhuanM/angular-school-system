@@ -23,6 +23,7 @@ export class AuthEffects {
           map(response => {
             this.setSessionStorageData(response);
             sessionStorage.setItem('role', response.role);
+            sessionStorage.setItem('accountLocked', response.accountLocked);
             sessionStorage.setItem('id', response.id);
             return AuthActions.authSuccess(
               {
@@ -51,7 +52,6 @@ export class AuthEffects {
           map(response => {
             sessionStorage.setItem('username', response.username);
             sessionStorage.setItem('email', response.email);
-            sessionStorage.setItem('accountLocked', response.accountLocked);
             sessionStorage.setItem('schoolId', response.schoolId);
 
             this.appService.openSnackBar("Successfully logged in!", MessageType.Success);

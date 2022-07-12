@@ -15,8 +15,10 @@ export class PrincipalGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const role = sessionStorage.getItem('role');
+    const isAccountLocked = sessionStorage.getItem('accountLocked');
 
-    if (role == "DIRECTOR") {
+
+    if (role == "DIRECTOR" && !isAccountLocked) {
       return true
     }
 
