@@ -26,8 +26,8 @@ export const apiUrls = {
   getPrincipalByIdUrl: environment.apiBaseUrl + 'api/director', // /{principalId} (GET)
   createPrincipalUrl: environment.apiBaseUrl + 'api/director/register', // (POST)
   // Schools
-  schoolsUrl: environment.apiBaseUrl + 'api/school',
-  getSchoolsUrl: environment.apiBaseUrl + 'api/school/all',
+  schoolsUrl: environment.apiBaseUrl + 'api/school', // ROOT
+  getSchoolsUrl: environment.apiBaseUrl + 'api/school/all', // (GET)
   // Grades
   gradesUrl: environment.apiBaseUrl + 'api/grade', // ROOT
   getAllGradesUrl: environment.apiBaseUrl + 'api/grade/all', // (GET)

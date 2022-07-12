@@ -11,6 +11,7 @@ import { user } from '../auth/store/auth.selectors';
 import { schools } from './store/schools.selectors';
 import { AppState } from '../shared/models/app-state.interface';
 import { MessageType } from '../shared/models/message-type.enum';
+import { createSchool, deleteSchool, getAllSchools, updateSchool } from './store/schools.actions';
 
 @Component({
   selector: 'app-schools',
@@ -31,10 +32,8 @@ export class SchoolsComponent extends BaseComponent {
   public editSettings: Object;
   public toolbar: string[];
   public idRules: Object;
-  public usernameRules: Object;
-  public emailRules: Object;
-  public fullNameRules: Object;
-  public passwordRules: Object;
+  public nameRules: Object;
+  public addressRules: Object;
   public editParams: Object;
   public pageSettings: Object;
 
@@ -49,32 +48,34 @@ export class SchoolsComponent extends BaseComponent {
       }
     });
 
-    // this.user$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
-      // if (user) {
-        this.role = sessionStorage.getItem('role');
-      // }
-    // });
+    this.role = sessionStorage.getItem('role');
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schools Component] Create Schools Success'))
+    this.store.dispatch(appLoading({ loading: true }));
+    this.store.dispatch(getAllSchools());
+
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schools Component] Create School Success'))
     .subscribe(() => {
       this.appService.openSnackBar("Successfully added new school!", MessageType.Success);
 
       this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(getAllSchools());
+      this.store.dispatch(getAllSchools());
     }));
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schools Component] Update Schools Success'))
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schools Component] Update School Success'))
     .subscribe(() => {
       this.appService.openSnackBar("Successfully updated school!", MessageType.Success);
+
+      this.store.dispatch(appLoading({ loading: true }));
+      this.store.dispatch(getAllSchools());
     }));
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schools Component] Delete Schools Success'))
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schools Component] Delete School Success'))
     .subscribe(() => {
       this.appService.openSnackBar("Successfully deleted school!", MessageType.Success);
-    }));
 
-    this.store.dispatch(appLoading({ loading: true }));
-    // this.store.dispatch(getAllSchools());
+      this.store.dispatch(appLoading({ loading: true }));
+      this.store.dispatch(getAllSchools());
+    }));
   }
 
   public ngOnInit(): void {
@@ -85,11 +86,9 @@ export class SchoolsComponent extends BaseComponent {
     }
 
     this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
-    this.idRules = { required: true, number: true };
-    this.usernameRules = { required: true };
-    this.passwordRules = { required: true };
-    this.emailRules = { required: true };
-    this.fullNameRules = { required: true };
+    this.idRules = { number: true };
+    this.addressRules = { required: true };
+    this.nameRules = { required: true };
     this.editParams = { params: { popupHeight: '300px' } };
     this.pageSettings = { pageCount: 10 };
   }
@@ -99,17 +98,17 @@ export class SchoolsComponent extends BaseComponent {
       // UPDATE
       let data = args.data;
       this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(updateSchool({ school: data }));
+      this.store.dispatch(updateSchool({ school: data }));
     } else if (args.requestType == "delete") {
       // DELETE
       let schoolId = args.data[0].id;
       this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(deleteSchool({ schoolId: schoolId }));
+      this.store.dispatch(deleteSchool({ schoolId: schoolId }));
     } else if (args.action == "add" && args.requestType == "save") {
       // CREATE
       let data = args.data;
       this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(createSchool({ school: data }));
+      this.store.dispatch(createSchool({ school: data }));
     }
   }
 

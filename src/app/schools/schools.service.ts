@@ -19,39 +19,25 @@ export class SchoolsService {
     return this.http.post<any>(
       apiUrls.schoolsUrl,
       {
-        "email": school.email,
-        "fullName": school.fullName,
-        "password": school.password,
-        "username": school.username,
-        "role": "USER"
+        "name": school.name,
+        "address": school.address
       }
     )
   }
 
   updateSchool(id: number, school: any) {
-    // return this.http.patch<any>(
-    //   apiUrls.schoolsUrl + '/${id}',
-    //   {
-    //     "firstName": school.firstName,
-    //     "lastName": school.lastName,
-    //     "username": school.username,
-    //     "school": school.school,
-    //     // "role": "USER"
-    //   }
-    // )
+    return this.http.patch<any>(
+      apiUrls.schoolsUrl + '/' + id,
+      {
+        "name": school.name,
+        "address": school.address
+      }
+    )
   }
 
   deleteSchool(id: number) {
-    // const httpParams = new HttpParams().set('id', id);
-    // const options = { params: httpParams };
-
-    // return this.http.delete<any>(
-    //   apiUrls.schoolsUrl + '/${id}',
-
-    //   // apiUrls.schoolsUrl + '/' + id,
-
-    //   // apiUrls.schoolsUrl,
-    //   // options
-    // )
+    return this.http.delete<any>(
+      apiUrls.schoolsUrl + '/' + id,
+    )
   }
 }

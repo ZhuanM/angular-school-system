@@ -44,31 +44,31 @@ export class SchoolsEffects {
         )
     );
 
-    // updateSchool$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(SchoolsActions.updateSchool),
-    //         switchMap(action => {
-    //             return this.schoolsService.updateSchool(action.school)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return SchoolsActions.updateSchoolSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    updateSchool$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SchoolsActions.updateSchool),
+            switchMap(action => {
+                return this.schoolsService.updateSchool(action.school.id, action.school)
+                    .pipe(
+                        map(response => {
+                            return SchoolsActions.updateSchoolSuccess();
+                        })
+                    )
+            })
+        )
+    );
 
-    // deleteSchool$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(SchoolsActions.deleteSchool),
-    //         switchMap(action => {
-    //             return this.schoolsService.deleteSchool(action.schoolId)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return SchoolsActions.deleteSchoolSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    deleteSchool$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SchoolsActions.deleteSchool),
+            switchMap(action => {
+                return this.schoolsService.deleteSchool(action.schoolId)
+                    .pipe(
+                        map(response => {
+                            return SchoolsActions.deleteSchoolSuccess();
+                        })
+                    )
+            })
+        )
+    );
 }
