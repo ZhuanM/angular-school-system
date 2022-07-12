@@ -6,31 +6,31 @@ import { appLoading } from '../loader/store/loader.actions';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AppService } from '../app.service';
 import { EditService, FilterService, PageService, SortService, ToolbarService } from '@syncfusion/ej2-angular-grids';
-import { users } from './store/users.selectors';
 import { AppState } from '../shared/models/app-state.interface';
 import { MessageType } from '../shared/models/message-type.enum';
-import { deleteUser, getAllUsers, updateUser } from './store/users.actions';
+import { principals } from './store/principals.selectors';
+import { deletePrincipal, getPrincipals, updatePrincipal } from './store/principals.actions';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-principals',
+  templateUrl: './principals.component.html',
+  styleUrls: ['./principals.component.scss'],
   providers: [ToolbarService, EditService, PageService, SortService, FilterService]
 })
-export class UsersComponent extends BaseComponent {
+export class PrincipalsComponent extends BaseComponent {
   private subscription = new Subscription();
 
-  readonly users$: Observable<any> = this.store.pipe(select(users), takeUntil(this.destroyed$));
-  public users: any;
+  readonly principals$: Observable<any> = this.store.pipe(select(principals), takeUntil(this.destroyed$));
+  public principals: any;
 
   public data: Object[];
   public editSettings: Object;
   public toolbar: string[];
   public idRules: Object;
-  public usernameRules: Object;
-  public emailRules: Object;
-  public roleRules: Object;
-  public accountLockedRules: Object;
+  public firstNameRules: Object;
+  public lastNameRules: Object;
+  public schoolNameRules: Object;
+  public schoolIdRules: Object;
   public editParams: Object;
   public pageSettings: Object;
 
@@ -39,41 +39,39 @@ export class UsersComponent extends BaseComponent {
     private appService: AppService) {
     super();
 
-    this.users$.pipe(takeUntil(this.destroyed$)).subscribe(users => {
-      if (users) {
-        this.users = users;
+    this.principals$.pipe(takeUntil(this.destroyed$)).subscribe(principals => {
+      if (principals) {
+        this.principals = principals;
       }
     });
 
     this.store.dispatch(appLoading({ loading: true }));
-    this.store.dispatch(getAllUsers());
+    this.store.dispatch(getPrincipals());
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Users Component] Update User Success'))
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Principals Component] Update Principal Success'))
     .subscribe(() => {
-      this.appService.openSnackBar("Successfully updated user!", MessageType.Success);
-
+      this.appService.openSnackBar("Successfully updated principal!", MessageType.Success);
       this.store.dispatch(appLoading({ loading: true }));
-      this.store.dispatch(getAllUsers());
+      this.store.dispatch(getPrincipals());
     }));
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Users Component] Delete User Success'))
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Principals Component] Delete Principal Success'))
     .subscribe(() => {
-      this.appService.openSnackBar("Successfully deleted user!", MessageType.Success);
-
+      this.appService.openSnackBar("Successfully deleted principal!", MessageType.Success);
       this.store.dispatch(appLoading({ loading: true }));
-      this.store.dispatch(getAllUsers());
+      this.store.dispatch(getPrincipals());
     }));
   }
 
   public ngOnInit(): void {
     this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, newRowPosition: 'Top' };
-
-    this.toolbar = ['Edit', 'Delete', 'Update', 'Cancel'];
-    this.idRules = { required: true, number: true };
-    this.usernameRules = { required: true };
-    this.emailRules = { required: true };
-    this.roleRules = { required: true };
-    this.accountLockedRules = { required: true };
+    
+    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.idRules = { number: true };
+    this.schoolIdRules = { required: true };
+    this.schoolNameRules = {  };
+    this.firstNameRules = { required: true };
+    this.lastNameRules = { required: true };
     this.editParams = { params: { popupHeight: '300px' } };
     this.pageSettings = { pageCount: 10 };
   }
@@ -83,12 +81,12 @@ export class UsersComponent extends BaseComponent {
       // UPDATE
       let data = args.data;
       this.store.dispatch(appLoading({ loading: true }));
-      this.store.dispatch(updateUser({ user: data }));
+      this.store.dispatch(updatePrincipal({ principal: data }));
     } else if (args.requestType == "delete") {
       // DELETE
-      let userId = args.data[0].id;
+      let principalId = args.data[0].id;
       this.store.dispatch(appLoading({ loading: true }));
-      this.store.dispatch(deleteUser({ userId: userId }));
+      this.store.dispatch(deletePrincipal({ principalId: principalId }));
     }
   }
 

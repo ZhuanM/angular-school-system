@@ -22,10 +22,13 @@ export class AuthEffects {
           tap(() => this.router.navigate(['/home'])),
           map(response => {
             this.setSessionStorageData(response);
+            sessionStorage.setItem('role', response.role);
+            sessionStorage.setItem('id', response.id);
             return AuthActions.authSuccess(
               {
                 accessToken: response.jwtToken,
-                id: response.userId
+                id: response.userId,
+                role: response.role
               }
             )
           }),
@@ -43,12 +46,10 @@ export class AuthEffects {
   this.actions$.pipe(
     ofType(AuthActions.authSuccess),
     switchMap(action => {
-      return this.authService.getUser(action.id)
+      return this.authService.getUser(action.role, action.id)
         .pipe(
           map(response => {
-            sessionStorage.setItem('role', response.role);
             sessionStorage.setItem('username', response.username);
-            sessionStorage.setItem('id', response.id);
             sessionStorage.setItem('email', response.email);
             sessionStorage.setItem('accountLocked', response.accountLocked);
             sessionStorage.setItem('schoolId', response.schoolId);
@@ -80,6 +81,7 @@ export class AuthEffects {
         sessionStorage.removeItem('id');
         sessionStorage.removeItem('email');
         sessionStorage.removeItem('accountLocked');
+        sessionStorage.removeItem('schoolId');
 
         return AuthActions.logoutSuccess();
       }),

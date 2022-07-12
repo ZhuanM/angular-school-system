@@ -1,15 +1,15 @@
 <div class="row mb-3 fs-28">
-  Teachers:
+  Parents:
 </div>
 <div class="row justify-content-center align-items-center">
   <div class="col p-0">
-      <ejs-grid #normalgrid id='Normalgrid' [dataSource]='teachers' allowPaging='true' allowSorting='true' allowFiltering='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'
+      <ejs-grid #normalgrid id='Normalgrid' [dataSource]='parents' allowPaging='true' allowSorting='true' allowFiltering='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'
        (actionBegin)='actionBegin($event)'>
           <e-columns>
               <e-column field='id' headerText='ID' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='idRules'></e-column>
               <e-column field='firstName' headerText='First Name' width='150' textAlign='center' [validationRules]='firstNameRules'></e-column>
               <e-column field='lastName' headerText='Last Name' width='150' textAlign='center' [validationRules]='lastNameRules'></e-column>
-              <e-column field='username' headerText='Username' width='150' textAlign='center' [validationRules]='usernameRules'></e-column>
+              <e-column field='childrenIds' headerText='Children IDs' width='150' textAlign='center' [validationRules]='childrenIdsRules'></e-column>
           </e-columns>
       </ejs-grid>
   </div>

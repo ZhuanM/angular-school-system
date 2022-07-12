@@ -4,29 +4,30 @@ import { apiUrls } from '../shared/api-urls';
 
 
 @Injectable({ providedIn: 'root' })
-export class UsersService {
+export class PrincipalsService {
   constructor(
     private http: HttpClient,
   ) {}
 
-  getAllUsers() {
+  getPrincipals() {
     return this.http.get<any>(
-      apiUrls.getAllUsersUrl
+      apiUrls.principalsUrl
     )
   }
 
-  updateUser(user: any) {
+  updatePrincipal(principal: any) {
     return this.http.patch<any>(
-      apiUrls.usersUrl + '/' + user.id,
+      apiUrls.principalsUrl + '/' + principal.id,
       {
-        "accountLocked": user.accountLocked,
+        "firstName": principal.firstName,
+        "lastName": principal.lastName,
       }
     )
   }
 
-  deleteUser(id: number) {
+  deletePrincipal(id: number) {
     return this.http.delete<any>(
-      apiUrls.usersUrl + '/' + id,
+      apiUrls.principalsUrl + '/' + id,
     )
   }
 }

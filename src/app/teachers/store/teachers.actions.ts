@@ -1,25 +1,18 @@
 import { createAction, props } from '@ngrx/store';
 
-export const getAllTeachers = createAction(
-  '[Teachers Component] Get All Teachers'
+export const getTeachers = createAction(
+  '[Teachers Component] Get Teachers',
+  props<{
+    role: string,
+    schoolId: any
+  }>()
 );
 
-export const getAllTeachersSuccess = createAction(
-  '[Teachers Component] Get All Teachers Success',
+export const getTeachersSuccess = createAction(
+  '[Teachers Component] Get Teachers Success',
   props<{
     teachers: any
   }>()
-);
-
-export const createTeacher = createAction(
-  '[Teachers Component] Create Teacher',
-  props<{
-    teacher: any
-  }>()
-);
-
-export const createTeacherSuccess = createAction(
-  '[Teachers Component] Create Teacher Success',
 );
 
 export const updateTeacher = createAction(

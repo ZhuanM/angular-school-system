@@ -1,11 +1,18 @@
 import { createAction, props } from '@ngrx/store';
 
-export const getAllAbsences = createAction(
-  '[Absences Component] Get All Absences'
+export const getAbsences = createAction(
+  '[Absences Component] Get Absences',
+  props<{
+    role: string,
+    studentId?: any,
+    parentId?: any,
+    teacherId?: any
+    schoolId?: any,
+  }>()
 );
 
-export const getAllAbsencesSuccess = createAction(
-  '[Absences Component] Get All Absences Success',
+export const getAbsencesSuccess = createAction(
+  '[Absences Component] Get Absences Success',
   props<{
     absences: any
   }>()
@@ -20,17 +27,6 @@ export const createAbsence = createAction(
 
 export const createAbsenceSuccess = createAction(
   '[Absences Component] Create Absence Success',
-);
-
-export const updateAbsence = createAction(
-  '[Absences Component] Update Absence',
-  props<{
-    absence: any
-  }>()
-);
-
-export const updateAbsenceSuccess = createAction(
-  '[Absences Component] Update Absence Success',
 );
 
 export const deleteAbsence = createAction(

@@ -14,14 +14,20 @@ export class AbsencesEffects {
 
   getAllAbsences$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(AbsencesActions.getAllAbsences),
+            ofType(AbsencesActions.getAbsences),
             switchMap(action => {
-                return this.absencesService.getAllAbsences()
+                return this.absencesService.getAbsences(action.role, action.studentId, action.parentId, action.teacherId, action.schoolId)
                     .pipe(
                         map(response => {
-                            return AbsencesActions.getAllAbsencesSuccess(
+                            let absences = response;
+                            absences = absences.map((absence) => ({
+                              ...absence,
+                              dateString: absence.date[2] + '/' + absence.date[1] + '/' + absence.date[0]
+                            }));
+
+                            return AbsencesActions.getAbsencesSuccess(
                                 {
-                                  absences: response,
+                                  absences: absences,
                                 }
                             )
                         }),
@@ -44,31 +50,17 @@ export class AbsencesEffects {
         )
     );
 
-    // updateAbsence$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(AbsencesActions.updateAbsence),
-    //         switchMap(action => {
-    //             return this.absencesService.updateAbsence(action.absence)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return AbsencesActions.updateAbsenceSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
-
-    // deleteAbsence$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(AbsencesActions.deleteAbsence),
-    //         switchMap(action => {
-    //             return this.absencesService.deleteAbsence(action.absenceId)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return AbsencesActions.deleteAbsenceSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    deleteAbsence$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AbsencesActions.deleteAbsence),
+            switchMap(action => {
+                return this.absencesService.deleteAbsence(action.absenceId)
+                    .pipe(
+                        map(response => {
+                            return AbsencesActions.deleteAbsenceSuccess();
+                        })
+                    )
+            })
+        )
+    );
 }

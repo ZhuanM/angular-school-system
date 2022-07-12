@@ -30,45 +30,31 @@ export class UsersEffects {
         )
     );
 
-    createUser$ = createEffect(() =>
+    updateUser$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(UsersActions.createUser),
+            ofType(UsersActions.updateUser),
             switchMap(action => {
-                return this.usersService.createUser(action.user)
+                return this.usersService.updateUser(action.user)
                     .pipe(
                         map(response => {
-                          return UsersActions.createUserSuccess();
+                            return UsersActions.updateUserSuccess();
                         })
                     )
             })
         )
     );
 
-    // updateUser$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(UsersActions.updateUser),
-    //         switchMap(action => {
-    //             return this.usersService.updateUser(action.user)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return UsersActions.updateUserSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
-
-    // deleteUser$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(UsersActions.deleteUser),
-    //         switchMap(action => {
-    //             return this.usersService.deleteUser(action.userId)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return UsersActions.deleteUserSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    deleteUser$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(UsersActions.deleteUser),
+            switchMap(action => {
+                return this.usersService.deleteUser(action.userId)
+                    .pipe(
+                        map(response => {
+                            return UsersActions.deleteUserSuccess();
+                        })
+                    )
+            })
+        )
+    );
 }

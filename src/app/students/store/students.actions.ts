@@ -1,25 +1,19 @@
 import { createAction, props } from '@ngrx/store';
 
-export const getAllStudents = createAction(
-  '[Students Component] Get All Students'
+export const getStudents = createAction(
+  '[Students Component] Get Students',
+  props<{
+    role: string,
+    teacherId?: any,
+    schoolId?: any,
+  }>()
 );
 
-export const getAllStudentsSuccess = createAction(
-  '[Students Component] Get All Students Success',
+export const getStudentsSuccess = createAction(
+  '[Students Component] Get Students Success',
   props<{
     students: any
   }>()
-);
-
-export const createStudent = createAction(
-  '[Students Component] Create Student',
-  props<{
-    student: any
-  }>()
-);
-
-export const createStudentSuccess = createAction(
-  '[Students Component] Create Student Success',
 );
 
 export const updateStudent = createAction(

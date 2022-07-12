@@ -42,6 +42,8 @@ export class AppComponent extends BaseComponent {
   private subjectsURL: boolean = false;
   private teachersURL: boolean = false;
   private scheduleURL: boolean = false;
+  private parentsURL: boolean = false;
+  private principalsURL: boolean = false;
 
   private role: string;
 
@@ -56,7 +58,6 @@ export class AppComponent extends BaseComponent {
 
     this.updateSidenavItems();
     
-    // TODO WHEN GET USER IS DONE
     this.user$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
       this.role = sessionStorage.getItem('role');
       this.updateSidenavItems();
@@ -213,7 +214,7 @@ export class AppComponent extends BaseComponent {
           clicked: this.absencesURL
         },
         {
-          icon: "rule",
+          icon: "group",
           text: "Students",
           clicked: this.studentsURL
         },
@@ -272,6 +273,26 @@ export class AppComponent extends BaseComponent {
           icon: "group",
           text: "Users",
           clicked: this.usersURL
+        },
+        {
+          icon: "group",
+          text: "Students",
+          clicked: this.studentsURL
+        },
+        {
+          icon: "group",
+          text: "Parents",
+          clicked: this.parentsURL
+        },
+        {
+          icon: "group",
+          text: "Teachers",
+          clicked: this.teachersURL
+        },
+        {
+          icon: "group",
+          text: "Principals",
+          clicked: this.principalsURL
         },
         {
           icon: "square_foot",
@@ -597,7 +618,7 @@ export class AppComponent extends BaseComponent {
           clicked: this.absencesURL
         },
         {
-          icon: "rule",
+          icon: "group",
           text: "Students",
           clicked: this.studentsURL
         },
@@ -637,6 +658,10 @@ export class AppComponent extends BaseComponent {
         this.statisticsURL = false;
         this.schoolsURL = false;
         this.scheduleURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
       } else if (this.location.path() == "/grades") {
         this.gradesURL = true;
         this.homeURL = false;
@@ -646,6 +671,10 @@ export class AppComponent extends BaseComponent {
         this.statisticsURL = false;
         this.schoolsURL = false;
         this.scheduleURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
       } else if (this.location.path() == "/absences") {
         this.absencesURL = true;
         this.homeURL = false;
@@ -655,6 +684,10 @@ export class AppComponent extends BaseComponent {
         this.statisticsURL = false;
         this.schoolsURL = false;
         this.scheduleURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
       } else if (this.location.path() == "/users") {
         this.usersURL = true;
         this.homeURL = false;
@@ -664,6 +697,10 @@ export class AppComponent extends BaseComponent {
         this.statisticsURL = false;
         this.schoolsURL = false;
         this.scheduleURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
       } else if (this.location.path() == "/subjects") {
         this.subjectsURL = true;
         this.homeURL = false;
@@ -673,6 +710,10 @@ export class AppComponent extends BaseComponent {
         this.statisticsURL = false;
         this.schoolsURL = false;
         this.scheduleURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
       } else if (this.location.path() == "/statistics") {
         this.statisticsURL = true;
         this.homeURL = false;
@@ -682,6 +723,10 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.schoolsURL = false;
         this.scheduleURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
       } else if (this.location.path() == "/schools") {
         this.schoolsURL = true;
         this.homeURL = false;
@@ -691,6 +736,62 @@ export class AppComponent extends BaseComponent {
         this.subjectsURL = false;
         this.statisticsURL = false;
         this.scheduleURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
+      } else if (this.location.path() == "/students") {
+        this.studentsURL = true;
+        this.homeURL = false;
+        this.gradesURL = false;
+        this.usersURL = false;
+        this.absencesURL = false;
+        this.subjectsURL = false;
+        this.statisticsURL = false;
+        this.scheduleURL = false;
+        this.schoolsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
+      } else if (this.location.path() == "/parents") {
+        this.parentsURL = true;
+        this.homeURL = false;
+        this.gradesURL = false;
+        this.usersURL = false;
+        this.absencesURL = false;
+        this.subjectsURL = false;
+        this.statisticsURL = false;
+        this.scheduleURL = false;
+        this.schoolsURL = false;
+        this.studentsURL = false;
+        this.teachersURL = false;
+        this.principalsURL = false;
+      } else if (this.location.path() == "/teachers") {
+        this.teachersURL = true;
+        this.homeURL = false;
+        this.gradesURL = false;
+        this.usersURL = false;
+        this.absencesURL = false;
+        this.subjectsURL = false;
+        this.statisticsURL = false;
+        this.scheduleURL = false;
+        this.schoolsURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.principalsURL = false;
+      } else if (this.location.path() == "/principals") {
+        this.principalsURL = true;
+        this.homeURL = false;
+        this.gradesURL = false;
+        this.usersURL = false;
+        this.absencesURL = false;
+        this.subjectsURL = false;
+        this.statisticsURL = false;
+        this.scheduleURL = false;
+        this.schoolsURL = false;
+        this.studentsURL = false;
+        this.parentsURL = false;
+        this.teachersURL = false;
       }
 
       this.sideNavItems = [
@@ -713,6 +814,26 @@ export class AppComponent extends BaseComponent {
           icon: "group",
           text: "Users",
           clicked: this.usersURL
+        },
+        {
+          icon: "group",
+          text: "Students",
+          clicked: this.studentsURL
+        },
+        {
+          icon: "group",
+          text: "Parents",
+          clicked: this.parentsURL
+        },
+        {
+          icon: "group",
+          text: "Teachers",
+          clicked: this.teachersURL
+        },
+        {
+          icon: "group",
+          text: "Principals",
+          clicked: this.principalsURL
         },
         {
           icon: "square_foot",
@@ -1201,6 +1322,58 @@ export class AppComponent extends BaseComponent {
             }
           } else {
             this.router.navigate(['schedule']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
+        case "Students":
+          if (this.location.path() == "/students") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['students']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
+        case "Parents":
+          if (this.location.path() == "/parents") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['parents']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
+        case "Teachers":
+          if (this.location.path() == "/teachers") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['teachers']);
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          }
+          break;
+        case "Principals":
+          if (this.location.path() == "/principals") {
+            window.location.reload();
+            if (this.sidenav.mode == 'over') {
+              this.closeSidenav();
+            }
+          } else {
+            this.router.navigate(['principals']);
             if (this.sidenav.mode == 'over') {
               this.closeSidenav();
             }

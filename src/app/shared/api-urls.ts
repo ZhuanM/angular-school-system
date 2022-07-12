@@ -5,16 +5,26 @@ export const apiUrls = {
   loginUrl: environment.apiBaseUrl + 'authenticate',
   registerUrl: environment.apiBaseUrl + 'api/user/register',
   // Users
-  usersUrl: environment.apiBaseUrl + 'api/user',
+  usersUrl: environment.apiBaseUrl + 'api/user', // ROOT
+  getAllUsersUrl: environment.apiBaseUrl + 'api/user/all', // ROOT
   // Students
-  studentsUrl: environment.apiBaseUrl + 'api/student',
+  studentsUrl: environment.apiBaseUrl + 'api/student', // ROOT
+  getAllStudents: environment.apiBaseUrl + 'api/student/all', // (GET)
+  getStudentByIdUrl: environment.apiBaseUrl + 'api/student', // /{studentId} (GET)
+  getTeacherStudentsUrl: environment.apiBaseUrl + 'api/teacher', // /{teacherId}/students (GET)
+  getPrincipalStudentsUrl: environment.apiBaseUrl + 'api/student/all', // /{schoolId} (GET)
   // Parents
-  parentsUrl: environment.apiBaseUrl + 'api/parent',
+  parentsUrl: environment.apiBaseUrl + 'api/parent', // ROOT
+  getParentByIdUrl: environment.apiBaseUrl + 'api/parent', // /{parentId} (GET)
   // Teachers
-  teachersUrl: environment.apiBaseUrl + 'api/teacher',
+  teachersUrl: environment.apiBaseUrl + 'api/teacher', // ROOT
+  getAllTeachersUrl: environment.apiBaseUrl + 'api/teacher', // (GET)
+  getTeacherByIdUrl: environment.apiBaseUrl + 'api/teacher', // /{teacherId} (GET)
+  getPrincipalTeachersUrl: environment.apiBaseUrl + 'api/school', // /{schoolId}/teachers (GET)
   // Principals
-  createPrincipalUrl: environment.apiBaseUrl + 'api/director/register',
-  principalsUrl: environment.apiBaseUrl + 'api/director',
+  principalsUrl: environment.apiBaseUrl + 'api/director', // ROOT
+  getPrincipalByIdUrl: environment.apiBaseUrl + 'api/director', // /{principalId} (GET)
+  createPrincipalUrl: environment.apiBaseUrl + 'api/director/register', // (POST)
   // Schools
   schoolsUrl: environment.apiBaseUrl + 'api/school',
   getSchoolsUrl: environment.apiBaseUrl + 'api/school/all',

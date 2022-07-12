@@ -14,14 +14,20 @@ export class GradesEffects {
 
   getAllGrades$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(GradesActions.getAllGrades),
+            ofType(GradesActions.getGrades),
             switchMap(action => {
-                return this.gradesService.getAllGrades()
+                return this.gradesService.getGrades(action.role, action.studentId, action.parentId, action.teacherId, action.schoolId)
                     .pipe(
                         map(response => {
-                            return GradesActions.getAllGradesSuccess(
+                            let grades = response;
+                            grades = grades.map((grade) => ({
+                              ...grade,
+                              dateString: grade.date[2] + '/' + grade.date[1] + '/' + grade.date[0]
+                            }));
+
+                            return GradesActions.getGradesSuccess(
                                 {
-                                  grades: response,
+                                  grades: grades,
                                 }
                             )
                         }),
@@ -44,31 +50,31 @@ export class GradesEffects {
         )
     );
 
-    // updateGrade$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(GradesActions.updateGrade),
-    //         switchMap(action => {
-    //             return this.gradesService.updateGrade(action.grade)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return GradesActions.updateGradeSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    updateGrade$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(GradesActions.updateGrade),
+            switchMap(action => {
+                return this.gradesService.updateGrade(action.grade)
+                    .pipe(
+                        map(response => {
+                            return GradesActions.updateGradeSuccess();
+                        })
+                    )
+            })
+        )
+    );
 
-    // deleteGrade$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(GradesActions.deleteGrade),
-    //         switchMap(action => {
-    //             return this.gradesService.deleteGrade(action.gradeId)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return GradesActions.deleteGradeSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    deleteGrade$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(GradesActions.deleteGrade),
+            switchMap(action => {
+                return this.gradesService.deleteGrade(action.gradeId)
+                    .pipe(
+                        map(response => {
+                            return GradesActions.deleteGradeSuccess();
+                        })
+                    )
+            })
+        )
+    );
 }

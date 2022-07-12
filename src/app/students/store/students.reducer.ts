@@ -14,7 +14,7 @@ const _studentsReducer = createReducer(
   initialState,
   
   on(
-    StudentsActions.getAllStudentsSuccess,
+    StudentsActions.getStudentsSuccess,
     (state, action) => ({
       ...state,
       students: action.students

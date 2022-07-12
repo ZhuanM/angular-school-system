@@ -9,49 +9,54 @@ export class GradesService {
     private http: HttpClient,
   ) {}
 
-  getAllGrades() {
-    return this.http.get<any>(
-      apiUrls.gradesUrl
-    )
+  getGrades(role: string, studentId?: any, parentId?: any, teacherId?: any, schoolId?: any) {
+    if (role === "STUDENT") {
+      return this.http.get<any>(
+        apiUrls.getStudentGradesUrl + '/' + studentId
+      )
+    } else if (role === "PARENT") {
+      return this.http.get<any>(
+        apiUrls.getParentGradesUrl + '/' + parentId
+      )
+    } else if (role === "TEACHER") {
+      return this.http.get<any>(
+        apiUrls.getTeacherGradesUrl + '/' + teacherId
+      )
+    } else if (role === "DIRECTOR") {
+      return this.http.get<any>(
+        apiUrls.getPrincipalGradesUrl + '/' + schoolId
+      )
+    } else if (role === "ADMIN") {
+      return this.http.get<any>(
+        apiUrls.getAllGradesUrl
+      )
+    }
   }
 
   createGrade(grade: any) {
     return this.http.post<any>(
       apiUrls.gradesUrl,
       {
-        "email": grade.email,
-        "fullName": grade.fullName,
-        "password": grade.password,
-        "username": grade.username,
-        "role": "USER"
+        "grade": grade.grade,
+        "studentId": grade.studentId,
+        "teacherId": grade.teacherId,
+        "subject": grade.subject,
       }
     )
   }
 
-  updateGrade(id: number, grade: any) {
-    // return this.http.patch<any>(
-    //   apiUrls.gradesUrl + '/${id}',
-    //   {
-    //     "firstName": grade.firstName,
-    //     "lastName": grade.lastName,
-    //     "username": grade.username,
-    //     "school": grade.school,
-    //     // "role": "USER"
-    //   }
-    // )
+  updateGrade(grade: any) {
+    return this.http.patch<any>(
+      apiUrls.gradesUrl + '/' + grade.id,
+      {
+        "grade": grade.grade
+      }
+    )
   }
 
   deleteGrade(id: number) {
-    // const httpParams = new HttpParams().set('id', id);
-    // const options = { params: httpParams };
-
-    // return this.http.delete<any>(
-    //   apiUrls.gradesUrl + '/${id}',
-
-    //   // apiUrls.gradesUrl + '/' + id,
-
-    //   // apiUrls.gradesUrl,
-    //   // options
-    // )
+    return this.http.delete<any>(
+      apiUrls.gradesUrl + '/' + id,
+    )
   }
 }

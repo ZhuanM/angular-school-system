@@ -8,9 +8,9 @@
           <e-columns>
               <e-column field='id' allowEditing='false' headerText='ID' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='idRules'></e-column>
               <e-column field='username' headerText='Username' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='usernameRules'></e-column>
-              <e-column field='email' headerText='E-mail' width='150' textAlign='center' [validationRules]='emailRules'></e-column>
-              <e-column field='fullName' headerText='Full Name' width='150' textAlign='center' [validationRules]='fullNameRules'></e-column>
-              <e-column field='password' headerText='Password' width='150' textAlign='center' [validationRules]='passwordRules'></e-column>
+              <e-column field='email' headerText='E-mail' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='emailRules'></e-column>
+              <e-column field='role' headerText='Role' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='roleRules'></e-column>
+              <e-column field='accountLocked' headerText='IsAccountLocked' width='150' textAlign='center' [validationRules]='accountLockedRules'></e-column>
           </e-columns>
       </ejs-grid>
   </div>

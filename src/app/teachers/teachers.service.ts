@@ -9,49 +9,32 @@ export class TeachersService {
     private http: HttpClient,
   ) {}
 
-  getAllTeachers() {
-    return this.http.get<any>(
-      apiUrls.teachersUrl
-    )
+  getTeachers(role: string, schoolId: any) {
+    if (role == "DIRECTOR") {
+      return this.http.get<any>(
+        apiUrls.getPrincipalTeachersUrl + '/' + schoolId + '/teachers'
+      )
+    } else if (role == "ADMIN") {
+      return this.http.get<any>(
+        apiUrls.getAllTeachersUrl
+      )
+    }
   }
 
-  createTeacher(teacher: any) {
-    return this.http.post<any>(
-      apiUrls.teachersUrl,
+  updateTeacher(teacher: any) {
+    return this.http.patch<any>(
+      apiUrls.teachersUrl + '/' + teacher.id,
       {
-        "email": teacher.email,
-        "fullName": teacher.fullName,
-        "password": teacher.password,
-        "username": teacher.username,
-        "role": "USER"
+        "firstName": teacher.firstName,
+        "lastName": teacher.lastName,
+        "username": teacher.username
       }
     )
   }
 
-  updateTeacher(id: number, teacher: any) {
-    // return this.http.patch<any>(
-    //   apiUrls.teachersUrl + '/${id}',
-    //   {
-    //     "firstName": teacher.firstName,
-    //     "lastName": teacher.lastName,
-    //     "username": teacher.username,
-    //     "school": teacher.school,
-    //     // "role": "USER"
-    //   }
-    // )
-  }
-
   deleteTeacher(id: number) {
-    // const httpParams = new HttpParams().set('id', id);
-    // const options = { params: httpParams };
-
-    // return this.http.delete<any>(
-    //   apiUrls.teachersUrl + '/${id}',
-
-    //   // apiUrls.teachersUrl + '/' + id,
-
-    //   // apiUrls.teachersUrl,
-    //   // options
-    // )
+    return this.http.delete<any>(
+      apiUrls.teachersUrl + '/' + id,
+    )
   }
 }

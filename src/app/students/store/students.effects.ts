@@ -7,21 +7,21 @@ import * as StudentsActions from './students.actions';
 
 @Injectable()
 export class StudentsEffects {
-  constructor(
-    private actions$: Actions,
-    private studentsService: StudentsService
-  ){}
+    constructor(
+        private actions$: Actions,
+        private studentsService: StudentsService
+    ) { }
 
-  getAllStudents$ = createEffect(() =>
+    getAllStudents$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(StudentsActions.getAllStudents),
+            ofType(StudentsActions.getStudents),
             switchMap(action => {
-                return this.studentsService.getAllStudents()
+                return this.studentsService.getStudents(action.role, action.teacherId, action.schoolId)
                     .pipe(
                         map(response => {
-                            return StudentsActions.getAllStudentsSuccess(
+                            return StudentsActions.getStudentsSuccess(
                                 {
-                                  students: response,
+                                    students: response,
                                 }
                             )
                         }),
@@ -30,45 +30,31 @@ export class StudentsEffects {
         )
     );
 
-    createStudent$ = createEffect(() =>
+    updateStudent$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(StudentsActions.createStudent),
+            ofType(StudentsActions.updateStudent),
             switchMap(action => {
-                return this.studentsService.createStudent(action.student)
+                return this.studentsService.updateStudent(action.student)
                     .pipe(
                         map(response => {
-                          return StudentsActions.createStudentSuccess();
+                            return StudentsActions.updateStudentSuccess();
                         })
                     )
             })
         )
     );
 
-    // updateStudent$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(StudentsActions.updateStudent),
-    //         switchMap(action => {
-    //             return this.studentsService.updateStudent(action.student)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return StudentsActions.updateStudentSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
-
-    // deleteStudent$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(StudentsActions.deleteStudent),
-    //         switchMap(action => {
-    //             return this.studentsService.deleteStudent(action.studentId)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return StudentsActions.deleteStudentSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    deleteStudent$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(StudentsActions.deleteStudent),
+            switchMap(action => {
+                return this.studentsService.deleteStudent(action.studentId)
+                    .pipe(
+                        map(response => {
+                            return StudentsActions.deleteStudentSuccess();
+                        })
+                    )
+            })
+        )
+    );
 }

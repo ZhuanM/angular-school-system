@@ -14,7 +14,7 @@ const _teachersReducer = createReducer(
   initialState,
   
   on(
-    TeachersActions.getAllTeachersSuccess,
+    TeachersActions.getTeachersSuccess,
     (state, action) => ({
       ...state,
       teachers: action.teachers

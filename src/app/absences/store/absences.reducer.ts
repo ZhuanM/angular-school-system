@@ -14,7 +14,7 @@ const _absencesReducer = createReducer(
   initialState,
   
   on(
-    AbsencesActions.getAllAbsencesSuccess,
+    AbsencesActions.getAbsencesSuccess,
     (state, action) => ({
       ...state,
       absences: action.absences

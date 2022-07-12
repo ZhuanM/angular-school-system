@@ -11,17 +11,6 @@ export const getAllUsersSuccess = createAction(
   }>()
 );
 
-export const createUser = createAction(
-  '[Users Component] Create User',
-  props<{
-    user: any
-  }>()
-);
-
-export const createUserSuccess = createAction(
-  '[Users Component] Create User Success',
-);
-
 export const updateUser = createAction(
   '[Users Component] Update User',
   props<{

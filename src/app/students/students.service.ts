@@ -9,49 +9,36 @@ export class StudentsService {
     private http: HttpClient,
   ) {}
 
-  getAllStudents() {
-    return this.http.get<any>(
-      apiUrls.studentsUrl
-    )
+  getStudents(role: string, teacherId?: any, schoolId?: any) {
+    if (role == "TEACHER") {
+      return this.http.get<any>(
+        apiUrls.getTeacherStudentsUrl + '/' + teacherId + '/students' 
+      )
+    } else if (role == "DIRECTOR") {
+      return this.http.get<any>(
+        apiUrls.getPrincipalStudentsUrl + '/' + schoolId
+      )
+    } else if (role == "ADMIN") {
+      return this.http.get<any>(
+        apiUrls.getAllStudents
+      )
+    }
   }
-
-  createStudent(student: any) {
-    return this.http.post<any>(
-      apiUrls.studentsUrl,
+  
+  updateStudent(student: any) {
+    return this.http.patch<any>(
+      apiUrls.studentsUrl + '/' + student.id,
       {
-        "email": student.email,
-        "fullName": student.fullName,
-        "password": student.password,
-        "username": student.username,
-        "role": "USER"
+        "firstName": student.firstName,
+        "lastName": student.lastName,
+        "schoolClass": student.schoolClass
       }
     )
   }
 
-  updateStudent(id: number, student: any) {
-    // return this.http.patch<any>(
-    //   apiUrls.studentsUrl + '/${id}',
-    //   {
-    //     "firstName": student.firstName,
-    //     "lastName": student.lastName,
-    //     "username": student.username,
-    //     "school": student.school,
-    //     // "role": "USER"
-    //   }
-    // )
-  }
-
   deleteStudent(id: number) {
-    // const httpParams = new HttpParams().set('id', id);
-    // const options = { params: httpParams };
-
-    // return this.http.delete<any>(
-    //   apiUrls.studentsUrl + '/${id}',
-
-    //   // apiUrls.studentsUrl + '/' + id,
-
-    //   // apiUrls.studentsUrl,
-    //   // options
-    // )
+    return this.http.delete<any>(
+      apiUrls.studentsUrl + '/' + id,
+    )
   }
 }

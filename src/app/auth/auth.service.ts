@@ -84,10 +84,28 @@ export class AuthService {
     }
   }
 
-  getUser(id: number) {
-    return this.http.get<any>(
-      apiUrls.usersUrl + '/' + id.toString() + ''
-    )
+  getUser(role: string, id: number) {
+    if (role == "STUDENT") {
+      return this.http.get<any>(
+        apiUrls.getStudentByIdUrl + '/' + id.toString() + ''
+      )
+    } else if (role == "PARENT") {
+      return this.http.get<any>(
+        apiUrls.getParentByIdUrl + '/' + id.toString() + ''
+      )
+    } else if (role == "TEACHER") {
+      return this.http.get<any>(
+        apiUrls.getTeacherByIdUrl + '/' + id.toString() + ''
+      )
+    } else if (role == "DIRECTOR") {
+      return this.http.get<any>(
+        apiUrls.getPrincipalByIdUrl + '/' + id.toString() + ''
+      )
+    } else if (role == "ADMIN") {
+      return this.http.get<any>(
+        apiUrls.usersUrl + '/' + id.toString() + ''
+      )
+    }
   }
 
   getSchools() {

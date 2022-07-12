@@ -5,12 +5,11 @@ import { Observable, Subscription } from 'rxjs';
 import { appLoading } from '../loader/store/loader.actions';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AppService } from '../app.service';
-import { User } from '../shared/models/user.interface';
 import { EditService, FilterService, PageService, SortService, ToolbarService } from '@syncfusion/ej2-angular-grids';
-import { user } from '../auth/store/auth.selectors';
 import { absences } from './store/absences.selectors';
 import { AppState } from '../shared/models/app-state.interface';
 import { MessageType } from '../shared/models/message-type.enum';
+import { createAbsence, deleteAbsence, getAbsences } from './store/absences.actions';
 
 @Component({
   selector: 'app-absences',
@@ -24,17 +23,18 @@ export class AbsencesComponent extends BaseComponent {
   readonly absences$: Observable<any> = this.store.pipe(select(absences), takeUntil(this.destroyed$));
   public absences: any;
 
-  readonly user$: Observable<User> = this.store.pipe(select(user), takeUntil(this.destroyed$));
   private role: string;
 
   public data: Object[];
   public editSettings: Object;
   public toolbar: string[];
   public idRules: Object;
-  public usernameRules: Object;
-  public emailRules: Object;
-  public fullNameRules: Object;
-  public passwordRules: Object;
+  public teacherRules: Object;
+  public studentRules: Object;
+  public teacherIdRules: Object;
+  public studentIdRules: Object;
+  public subjectRules: Object;
+  public dateRules: Object;
   public editParams: Object;
   public pageSettings: Object;
 
@@ -49,67 +49,73 @@ export class AbsencesComponent extends BaseComponent {
       }
     });
 
-    // this.user$.pipe(takeUntil(this.destroyed$)).subscribe(user => {
-      // if (user) {
-        this.role = sessionStorage.getItem('role');
-      // }
-    // });
+    this.role = sessionStorage.getItem('role');
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Absences Component] Create Absences Success'))
+    this.getAbsences();
+
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Absences Component] Create Absence Success'))
     .subscribe(() => {
       this.appService.openSnackBar("Successfully added new absence!", MessageType.Success);
 
-      this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(getAllAbsences());
+      this.getAbsences();
     }));
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Absences Component] Update Absences Success'))
-    .subscribe(() => {
-      this.appService.openSnackBar("Successfully updated absence!", MessageType.Success);
-    }));
-
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Absences Component] Delete Absences Success'))
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Absences Component] Delete Absence Success'))
     .subscribe(() => {
       this.appService.openSnackBar("Successfully deleted absence!", MessageType.Success);
+      this.getAbsences();
     }));
-
-    this.store.dispatch(appLoading({ loading: true }));
-    // this.store.dispatch(getAllAbsences());
   }
 
   public ngOnInit(): void {
-    if (this.role == "ADMIN") {
+    if (this.role == "ADMIN" || this.role == "TEACHER") {
       this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, newRowPosition: 'Top' };
     } else {
       this.editSettings = { allowEditing: false, allowAdding: false, allowDeleting: false, newRowPosition: 'Top' };
     }
 
-    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
-    this.idRules = { required: true, number: true };
-    this.usernameRules = { required: true };
-    this.passwordRules = { required: true };
-    this.emailRules = { required: true };
-    this.fullNameRules = { required: true };
+    this.toolbar = ['Add', 'Delete', 'Cancel'];
+    this.idRules = { number: true };
+    this.teacherRules = {  };
+    this.studentRules = {  };
+    this.teacherIdRules = { required: true };
+    this.studentIdRules = { required: true };
+    this.subjectRules = { required: true };
+    this.dateRules = {  };
     this.editParams = { params: { popupHeight: '300px' } };
     this.pageSettings = { pageCount: 10 };
   }
 
   actionBegin(args: any): void {
-    if (args.action == "edit" && args.requestType == "save") {
-      // UPDATE
-      let data = args.data;
-      this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(updateAbsence({ absence: data }));
-    } else if (args.requestType == "delete") {
+    if (args.requestType == "delete") {
       // DELETE
       let absenceId = args.data[0].id;
       this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(deleteAbsence({ absenceId: absenceId }));
+      this.store.dispatch(deleteAbsence({ absenceId: absenceId }));
     } else if (args.action == "add" && args.requestType == "save") {
       // CREATE
       let data = args.data;
       this.store.dispatch(appLoading({ loading: true }));
-      // this.store.dispatch(createAbsence({ absence: data }));
+      this.store.dispatch(createAbsence({ absence: data }));
+    }
+  }
+
+  private getAbsences() {
+    this.store.dispatch(appLoading({ loading: true }));
+    if (this.role === "STUDENT") {
+      const studentId = sessionStorage.getItem('id');
+      this.store.dispatch(getAbsences({ role: this.role, studentId: studentId }));
+    } else if (this.role === "PARENT") {
+      const parentId = sessionStorage.getItem('id');
+      this.store.dispatch(getAbsences({ role: this.role, parentId: parentId }));
+    } else if (this.role === "TEACHER") {
+      const teacherId = sessionStorage.getItem('id');
+      this.store.dispatch(getAbsences({ role: this.role, teacherId: teacherId }));
+    } else if (this.role === "DIRECTOR") {
+      const schoolId = sessionStorage.getItem('schoolId');
+      this.store.dispatch(getAbsences({ role: this.role, schoolId: schoolId }));
+    } else if (this.role === "ADMIN") {
+      this.store.dispatch(getAbsences({ role: this.role }));
     }
   }
 

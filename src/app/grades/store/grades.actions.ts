@@ -1,11 +1,18 @@
 import { createAction, props } from '@ngrx/store';
 
-export const getAllGrades = createAction(
-  '[Grades Component] Get All Grades'
+export const getGrades = createAction(
+  '[Grades Component] Get Grades',
+  props<{
+    role: string,
+    studentId?: any,
+    parentId?: any,
+    teacherId?: any
+    schoolId?: any,
+  }>()
 );
 
-export const getAllGradesSuccess = createAction(
-  '[Grades Component] Get All Grades Success',
+export const getGradesSuccess = createAction(
+  '[Grades Component] Get Grades Success',
   props<{
     grades: any
   }>()

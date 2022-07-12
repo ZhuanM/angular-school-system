@@ -84,6 +84,10 @@ import { UsersComponent } from "./users/users.component";
 import { UsersEffects } from "./users/store/users.effects";
 import { SchoolComponent } from "./school/school.component";
 import { SchoolEffects } from "./school/store/school.effects";
+import { PrincipalsEffects } from "./principals/store/principals.effects";
+import { PrincipalsComponent } from "./principals/principals.component";
+import { ParentsEffects } from "./parents/store/parents.effects";
+import { ParentsComponent } from "./parents/parents.component";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'fill'
@@ -109,6 +113,8 @@ const appearance: MatFormFieldDefaultOptions = {
     ScheduleComponent,
     UsersComponent,
     SchoolComponent,
+    PrincipalsComponent,
+    ParentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,6 +133,8 @@ const appearance: MatFormFieldDefaultOptions = {
       ScheduleEffects,
       UsersEffects,
       SchoolEffects,
+      PrincipalsEffects,
+      ParentsEffects,
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

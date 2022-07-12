@@ -9,49 +9,44 @@ export class AbsencesService {
     private http: HttpClient,
   ) {}
 
-  getAllAbsences() {
-    return this.http.get<any>(
-      apiUrls.absencesUrl
-    )
+  getAbsences(role: string, studentId?: any, parentId?: any, teacherId?: any, schoolId?: any) {
+    if (role === "STUDENT") {
+      return this.http.get<any>(
+        apiUrls.getStudentAbsencesUrl + '/' + studentId
+      )
+    } else if (role === "PARENT") {
+      return this.http.get<any>(
+        apiUrls.getParentAbsencesUrl + '/' + parentId
+      )
+    } else if (role === "TEACHER") {
+      return this.http.get<any>(
+        apiUrls.getTeacherAbsencesUrl + '/' + teacherId
+      )
+    } else if (role === "DIRECTOR") {
+      return this.http.get<any>(
+        apiUrls.getPrincipalAbsencesUrl + '/' + schoolId
+      )
+    } else if (role === "ADMIN") {
+      return this.http.get<any>(
+        apiUrls.getAllAbsencesUrl
+      )
+    }
   }
 
   createAbsence(absence: any) {
     return this.http.post<any>(
       apiUrls.absencesUrl,
       {
-        "email": absence.email,
-        "fullName": absence.fullName,
-        "password": absence.password,
-        "username": absence.username,
-        "role": "USER"
+        "studentId": absence.studentId,
+        "teacherId": absence.teacherId,
+        "subject": absence.subject,
       }
     )
   }
 
-  updateAbsence(id: number, absence: any) {
-    // return this.http.patch<any>(
-    //   apiUrls.absencesUrl + '/${id}',
-    //   {
-    //     "firstName": absence.firstName,
-    //     "lastName": absence.lastName,
-    //     "username": absence.username,
-    //     "school": absence.school,
-    //     // "role": "USER"
-    //   }
-    // )
-  }
-
   deleteAbsence(id: number) {
-    // const httpParams = new HttpParams().set('id', id);
-    // const options = { params: httpParams };
-
-    // return this.http.delete<any>(
-    //   apiUrls.absencesUrl + '/${id}',
-
-    //   // apiUrls.absencesUrl + '/' + id,
-
-    //   // apiUrls.absencesUrl,
-    //   // options
-    // )
+    return this.http.delete<any>(
+      apiUrls.absencesUrl + '/' + id,
+    )
   }
 }

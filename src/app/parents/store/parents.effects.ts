@@ -1,27 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap, map } from 'rxjs/operators';
-import { TeachersService } from '../teachers.service';
-import * as TeachersActions from './teachers.actions';
+import { ParentsService } from '../parents.service';
+import * as ParentsActions from './parents.actions';
 
 
 @Injectable()
-export class TeachersEffects {
+export class ParentsEffects {
     constructor(
         private actions$: Actions,
-        private teachersService: TeachersService
+        private parentsService: ParentsService
     ) { }
 
-    getTeachers$ = createEffect(() =>
+    getParents$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(TeachersActions.getTeachers),
+            ofType(ParentsActions.getParents),
             switchMap(action => {
-                return this.teachersService.getTeachers(action.role, action.schoolId)
+                return this.parentsService.getParents()
                     .pipe(
                         map(response => {
-                            return TeachersActions.getTeachersSuccess(
+                            return ParentsActions.getParentsSuccess(
                                 {
-                                    teachers: response,
+                                    parents: response,
                                 }
                             )
                         }),
@@ -30,28 +30,28 @@ export class TeachersEffects {
         )
     );
 
-    updateTeacher$ = createEffect(() =>
+    updateParent$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(TeachersActions.updateTeacher),
+            ofType(ParentsActions.updateParent),
             switchMap(action => {
-                return this.teachersService.updateTeacher(action.teacher)
+                return this.parentsService.updateParent(action.parent)
                     .pipe(
                         map(response => {
-                            return TeachersActions.updateTeacherSuccess();
+                            return ParentsActions.updateParentSuccess();
                         })
                     )
             })
         )
     );
 
-    deleteTeacher$ = createEffect(() =>
+    deleteParent$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(TeachersActions.deleteTeacher),
+            ofType(ParentsActions.deleteParent),
             switchMap(action => {
-                return this.teachersService.deleteTeacher(action.teacherId)
+                return this.parentsService.deleteParent(action.parentId)
                     .pipe(
                         map(response => {
-                            return TeachersActions.deleteTeacherSuccess();
+                            return ParentsActions.deleteParentSuccess();
                         })
                     )
             })

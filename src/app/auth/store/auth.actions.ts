@@ -27,7 +27,8 @@ export const authSuccess = createAction(
   '[Auth Component] Auth Success',
   props<{
     accessToken: string,
-    id: number
+    id: number,
+    role: string
   }>()
 );
 

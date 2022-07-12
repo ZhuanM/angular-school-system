@@ -14,7 +14,7 @@ const _gradesReducer = createReducer(
   initialState,
   
   on(
-    GradesActions.getAllGradesSuccess,
+    GradesActions.getGradesSuccess,
     (state, action) => ({
       ...state,
       grades: action.grades

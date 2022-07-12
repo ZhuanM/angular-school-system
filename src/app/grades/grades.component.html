@@ -7,10 +7,13 @@
        (actionBegin)='actionBegin($event)'>
           <e-columns>
               <e-column field='id' allowEditing='false' headerText='ID' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='idRules'></e-column>
-              <e-column field='username' headerText='Username' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='usernameRules'></e-column>
-              <e-column field='email' headerText='E-mail' width='150' textAlign='center' [validationRules]='emailRules'></e-column>
-              <e-column field='fullName' headerText='Full Name' width='150' textAlign='center' [validationRules]='fullNameRules'></e-column>
-              <e-column field='password' headerText='Password' width='150' textAlign='center' [validationRules]='passwordRules'></e-column>
+              <e-column field='teacherName' headerText='Teacher Name' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='teacherRules'></e-column>
+              <e-column field='studentName' headerText='Student Name' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='studentRules'></e-column>
+              <e-column field='teacherId' headerText='Teacher ID' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='teacherIdRules'></e-column>
+              <e-column field='studentId' headerText='Student ID' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='studentIdRules'></e-column>
+              <e-column field='subject' headerText='Subject' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='subjectRules'></e-column>
+              <e-column field='grade' headerText='Grade' width='150' textAlign='center' [validationRules]='gradeRules'></e-column>
+              <e-column field='dateString' headerText='Date' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='dateRules'></e-column>
           </e-columns>
       </ejs-grid>
   </div>

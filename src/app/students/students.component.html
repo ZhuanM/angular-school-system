@@ -4,13 +4,13 @@
 <div class="row justify-content-center align-items-center">
   <div class="col p-0">
       <ejs-grid #normalgrid id='Normalgrid' [dataSource]='students' allowPaging='true' allowSorting='true' allowFiltering='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'
-       (actionBegin)='actionBegin($event)'>
+      (actionBegin)='actionBegin($event)'>
           <e-columns>
               <e-column field='id' allowEditing='false' headerText='ID' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='idRules'></e-column>
-              <e-column field='username' headerText='Username' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='usernameRules'></e-column>
-              <e-column field='email' headerText='E-mail' width='150' textAlign='center' [validationRules]='emailRules'></e-column>
-              <e-column field='fullName' headerText='Full Name' width='150' textAlign='center' [validationRules]='fullNameRules'></e-column>
-              <e-column field='password' headerText='Password' width='150' textAlign='center' [validationRules]='passwordRules'></e-column>
+              <e-column field='firstName' headerText='First Name' width='150' textAlign='center' [validationRules]='firstNameRules'></e-column>
+              <e-column field='lastName' headerText='Last Name' width='150' textAlign='center' [validationRules]='lastNameRules'></e-column>
+              <e-column field='schoolName' headerText='School Name' width='150' textAlign='center' isPrimaryKey='true' [validationRules]='schoolNameRules'></e-column>
+              <e-column field='schoolClass' headerText='School Class' width='150' textAlign='center' [validationRules]='schoolClassRules'></e-column>
           </e-columns>
       </ejs-grid>
   </div>
