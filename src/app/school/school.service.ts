@@ -9,9 +9,9 @@ export class SchoolService {
     private http: HttpClient,
   ) {}
 
-  getSchool() {
+  getSchool(id: any) {
     return this.http.get<any>(
-      apiUrls.schoolsUrl
+      apiUrls.schoolsUrl + '/' + id
     )
   }
 }

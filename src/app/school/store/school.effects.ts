@@ -12,16 +12,17 @@ export class SchoolEffects {
         private schoolService: SchoolService,
     ) { }
 
-    getSchoolName$ = createEffect(() =>
+    getSchool$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(SchoolActions.getSchoolName),
+            ofType(SchoolActions.getSchool),
             switchMap(action => {
-                return this.schoolService.getSchool()
+                return this.schoolService.getSchool(action.id)
                     .pipe(
                         map(response => {
-                            return SchoolActions.getSchoolNameSuccess(
+                            return SchoolActions.getSchoolSuccess(
                                 {
                                     name: response.name,
+                                    schoolAddress: response.address
                                 }
                             )
                         }),

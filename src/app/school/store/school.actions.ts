@@ -1,12 +1,16 @@
 import { createAction, props } from "@ngrx/store";
 
-export const getSchoolName = createAction(
-    '[School Component] Get School Name'
+export const getSchool = createAction(
+    '[School Component] Get School',
+    props<{
+        id: any
+    }>()
 );
 
-export const getSchoolNameSuccess = createAction(
-    '[School Component] Get School Name Success',
+export const getSchoolSuccess = createAction(
+    '[School Component] Get School Success',
     props<{
-        name: string
+        name: string,
+        schoolAddress: string
     }>()
 );

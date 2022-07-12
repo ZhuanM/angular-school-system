@@ -3,20 +3,23 @@ import * as SchoolActions from './school.actions';
 
 export interface State {
   schoolName: string,
+  schoolAddress: string,
 }
 
 export const initialState: State = {
   schoolName: null,
+  schoolAddress: null,
 }
 
 const _schoolReducer = createReducer(
   initialState,
 
   on(
-    SchoolActions.getSchoolNameSuccess,
+    SchoolActions.getSchoolSuccess,
     (state, action) => ({
       ...state,
-      schoolName: action.name
+      schoolName: action.name,
+      schoolAddress: action.schoolAddress
     })
   ),
 );

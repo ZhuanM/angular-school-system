@@ -8,3 +8,8 @@ export const schoolName = createSelector(
     schoolSelector,
     (state: State) => state.schoolName
 );
+
+export const schoolAddress = createSelector(
+    schoolSelector,
+    (state: State) => state.schoolAddress
+);
