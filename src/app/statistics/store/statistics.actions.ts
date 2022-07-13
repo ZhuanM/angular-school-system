@@ -15,3 +15,14 @@ export const getStatisticsSuccess = createAction(
         totalTeachers: any
     }>()
 );
+
+export const getAllStatistics = createAction(
+    '[Statistics Component] Get All Statistics'
+);
+
+export const getAllStatisticsSuccess = createAction(
+    '[Statistics Component] Get All Statistics Success',
+    props<{
+        statistics: any,
+    }>()
+);

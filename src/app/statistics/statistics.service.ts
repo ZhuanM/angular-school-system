@@ -14,4 +14,11 @@ export class StatisticsService {
       apiUrls.getSchoolStatisticsUrl + '/' + schoolId + '/statistics'
     )
   }
+
+  getAllStatistics() {
+    // TODO CHANGE WITH REAL URL WHEN DONE
+    return this.http.get<any>(
+      apiUrls.getSchoolStatisticsUrl
+    )
+  }
 }

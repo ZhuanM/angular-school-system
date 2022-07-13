@@ -5,8 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 import { appLoading } from '../loader/store/loader.actions';
 import { BaseComponent } from '../shared/base.component';
 import { AppState } from '../shared/models/app-state.interface';
-import { getStatistics } from './store/statistics.actions';
-import { averageGrade, totalStudents, totalTeachers } from './store/statistics.selectors';
+import { getAllStatistics, getStatistics } from './store/statistics.actions';
+import { averageGrade, statistics, totalStudents, totalTeachers } from './store/statistics.selectors';
 
 @Component({
   selector: 'app-statistics',
@@ -14,12 +14,15 @@ import { averageGrade, totalStudents, totalTeachers } from './store/statistics.s
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent extends BaseComponent {
+  readonly statistics$: Observable<any> = this.store.pipe(select(statistics), takeUntil(this.destroyed$));
+
   readonly averageGrade$: Observable<any> = this.store.pipe(select(averageGrade), takeUntil(this.destroyed$));
   readonly totalStudents$: Observable<any> = this.store.pipe(select(totalStudents), takeUntil(this.destroyed$));
   readonly totalTeachers$: Observable<any> = this.store.pipe(select(totalTeachers), takeUntil(this.destroyed$));
-  public statistics: any;
 
   public role: string;
+
+  public statistics: any;
 
   public totalTeachers: any;
   public totalStudents: any;
@@ -29,6 +32,12 @@ export class StatisticsComponent extends BaseComponent {
     super();
 
     this.role = sessionStorage.getItem('role');
+
+    this.statistics$.pipe(takeUntil(this.destroyed$)).subscribe(statistics => {
+      if (statistics) {
+        this.statistics = statistics;
+      }
+    });
 
     this.averageGrade$.pipe(takeUntil(this.destroyed$)).subscribe(averageGrade => {
       if (averageGrade) {
@@ -48,8 +57,12 @@ export class StatisticsComponent extends BaseComponent {
       }
     });
 
-    const schoolId = sessionStorage.getItem('schoolId');
     this.store.dispatch(appLoading({ loading: true }));
-    this.store.dispatch(getStatistics({ schoolId: schoolId }));
+    if (this.role == "DIRECTOR") {
+      const schoolId = sessionStorage.getItem('schoolId');
+      this.store.dispatch(getStatistics({ schoolId: schoolId }));
+    } else if (this.role == "ADMIN") {
+      this.store.dispatch(getAllStatistics());
+    }
   }
 }

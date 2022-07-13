@@ -4,6 +4,11 @@ import { State } from "./statistics.reducer";
 
 const statisticsSelector = createFeatureSelector<AppState, State>('statistics');
 
+export const statistics = createSelector(
+    statisticsSelector,
+    (state: State) => state.statistics
+);
+
 export const averageGrade = createSelector(
     statisticsSelector,
     (state: State) => state.averageGrade

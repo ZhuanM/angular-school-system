@@ -31,4 +31,22 @@ export class StatisticsEffects {
             })
         )
     );
+
+    getAllStatistics$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(StatisticsActions.getAllStatistics),
+            switchMap(action => {
+                return this.statisticsService.getAllStatistics()
+                    .pipe(
+                        map(response => {
+                            return StatisticsActions.getAllStatisticsSuccess(
+                                {
+                                    statistics: response
+                                }
+                            )
+                        }),
+                    );
+            })
+        )
+    );
 }
