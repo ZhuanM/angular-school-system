@@ -65,7 +65,7 @@ export class ParentsComponent extends BaseComponent {
   public ngOnInit(): void {
     this.editSettings = { allowEditing: true, allowAdding: true, allowDeleting: true, newRowPosition: 'Top' };
     
-    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.toolbar = ['Edit', 'Delete', 'Update', 'Cancel'];
     this.idRules = { number: true };
     this.firstNameRules = { required: true };
     this.lastNameRules = { required: true };

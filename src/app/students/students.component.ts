@@ -71,7 +71,7 @@ export class StudentsComponent extends BaseComponent {
       this.editSettings = { allowEditing: false, allowAdding: false, allowDeleting: false, newRowPosition: 'Top' };
     }
 
-    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.toolbar = ['Edit', 'Delete', 'Update', 'Cancel'];
     this.idRules = { number: true };
     this.firstNameRules = { required: true };
     this.lastNameRules = { required: true };

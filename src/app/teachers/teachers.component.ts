@@ -82,7 +82,7 @@ export class TeachersComponent extends BaseComponent {
       this.editSettings = { allowEditing: false, allowAdding: false, allowDeleting: false, newRowPosition: 'Top' };
     }
 
-    this.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+    this.toolbar = ['Edit', 'Delete', 'Update', 'Cancel'];
     this.idRules = { required: true, number: true };
     this.usernameRules = { required: true };
     this.firstNameRules = { required: true };
