@@ -8,22 +8,22 @@ import { AppService } from '../app.service';
 import { User } from '../shared/models/user.interface';
 import { EditService, FilterService, PageService, SortService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 import { user } from '../auth/store/auth.selectors';
-import { schedule } from './store/schedule.selectors';
 import { AppState } from '../shared/models/app-state.interface';
 import { MessageType } from '../shared/models/message-type.enum';
-import { deleteSchedule, getSchedule } from './store/schedule.actions';
+import { deleteClass, getClasses } from './store/classes.actions';
+import { classes } from './store/classes.selectors';
 
 @Component({
-  selector: 'app-schedule',
-  templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss'],
+  selector: 'app-classes',
+  templateUrl: './classes.component.html',
+  styleUrls: ['./classes.component.scss'],
   providers: [ToolbarService, EditService, PageService, SortService, FilterService]
 })
-export class ScheduleComponent extends BaseComponent {
+export class ClassesComponent extends BaseComponent {
   private subscription = new Subscription();
 
-  readonly schedule$: Observable<any> = this.store.pipe(select(schedule), takeUntil(this.destroyed$));
-  public schedule: any;
+  readonly classes$: Observable<any> = this.store.pipe(select(classes), takeUntil(this.destroyed$));
+  public classes: any;
 
   readonly user$: Observable<User> = this.store.pipe(select(user), takeUntil(this.destroyed$));
   private role: string;
@@ -39,35 +39,21 @@ export class ScheduleComponent extends BaseComponent {
     private appService: AppService) {
     super();
 
-    this.schedule$.pipe(takeUntil(this.destroyed$)).subscribe(schedule => {
-      if (schedule) {
-        this.schedule = schedule;
+    this.classes$.pipe(takeUntil(this.destroyed$)).subscribe(classes => {
+      if (classes) {
+        this.classes = classes;
       }
     });
 
     this.role = sessionStorage.getItem('role');
 
-    this.getSchedule();
+    this.getClasses();
 
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schedule Component] Create Schedule Success'))
+    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Classes Component] Delete Class Success'))
     .subscribe(() => {
-      this.appService.openSnackBar("Successfully added new schedule!", MessageType.Success);
+      this.appService.openSnackBar("Successfully deleted class!", MessageType.Success);
 
-      this.getSchedule();
-    }));
-
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schedule Component] Update Schedule Success'))
-    .subscribe(() => {
-      this.appService.openSnackBar("Successfully updated schedule!", MessageType.Success);
-
-      this.getSchedule();
-    }));
-
-    this.subscription.add(this.actionsSubject$.pipe(filter((action) => action.type === '[Schedule Component] Delete Schedule Success'))
-    .subscribe(() => {
-      this.appService.openSnackBar("Successfully deleted schedule!", MessageType.Success);
-
-      this.getSchedule();
+      this.getClasses();
     }));
   }
 
@@ -86,21 +72,21 @@ export class ScheduleComponent extends BaseComponent {
   actionBegin(args: any): void {
     if (args.requestType == "delete") {
       // DELETE
-      let scheduleClassId = args.data[0].classId;
+      let teacherClassId = args.data[0].id;
       this.store.dispatch(appLoading({ loading: true }));
-      this.store.dispatch(deleteSchedule({ scheduleClassId: scheduleClassId }));
+      this.store.dispatch(deleteClass({ teacherClassId: teacherClassId }));
     }
   }
 
-  private getSchedule() {
+  private getClasses() {
     this.store.dispatch(appLoading({ loading: true }));
     if (this.role === "STUDENT") {
       const sclassId = sessionStorage.getItem('sclassId');
-      this.store.dispatch(getSchedule({ role: this.role, classId: sclassId }));
+      this.store.dispatch(getClasses({ role: this.role, classId: sclassId }));
     } else if (this.role === "DIRECTOR") {
-      this.store.dispatch(getSchedule({ role: this.role }));
+      this.store.dispatch(getClasses({ role: this.role }));
     } else if (this.role === "ADMIN") {
-      this.store.dispatch(getSchedule({ role: this.role }));
+      this.store.dispatch(getClasses({ role: this.role }));
     }
   }
 

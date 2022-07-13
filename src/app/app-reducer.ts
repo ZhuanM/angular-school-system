@@ -16,6 +16,9 @@ import * as fromStatistics from './statistics/store/statistics.reducer';
 import * as fromSchedule from './schedule/store/schedule.reducer';
 import * as fromPrincipals from './principals/store/principals.reducer';
 import * as fromParents from './parents/store/parents.reducer';
+import * as fromAssignSchedule from './assign-schedule/store/assign-schedule.reducer';
+import * as fromClasses from './classes/store/classes.reducer';
+import * as fromAssignClass from './assign-class/store/assign-class.reducer';
 
 export const appReducer: ActionReducerMap<AppState> = {
   auth: fromAuth.authReducer,
@@ -34,4 +37,7 @@ export const appReducer: ActionReducerMap<AppState> = {
   schedule: fromSchedule.scheduleReducer,
   principals: fromPrincipals.principalsReducer,
   parents: fromParents.parentsReducer,
+  assignSchedule: fromAssignSchedule.assignScheduleReducer,
+  classes: fromClasses.classesReducer,
+  assignClass: fromAssignClass.assignClassReducer,
 };

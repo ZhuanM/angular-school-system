@@ -53,6 +53,7 @@ export class AuthEffects {
             sessionStorage.setItem('username', response.username);
             sessionStorage.setItem('email', response.email);
             sessionStorage.setItem('schoolId', response.schoolId);
+            sessionStorage.setItem('sclassId', response.sclassId);
 
             this.appService.openSnackBar("Successfully logged in!", MessageType.Success);
 
@@ -82,6 +83,7 @@ export class AuthEffects {
         sessionStorage.removeItem('email');
         sessionStorage.removeItem('accountLocked');
         sessionStorage.removeItem('schoolId');
+        sessionStorage.removeItem('sclassId');
 
         return AuthActions.logoutSuccess();
       }),

@@ -15,7 +15,7 @@ export class SubjectsPageGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const role = sessionStorage.getItem('role');
-    const isAccountLocked = sessionStorage.getItem('accountLocked');
+    const isAccountLocked = (sessionStorage.getItem('accountLocked') === 'true');
 
     if ((role == "DIRECTOR" || role == "TEACHER" || role == "ADMIN") && !isAccountLocked) {
       return true

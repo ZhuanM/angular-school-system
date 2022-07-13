@@ -7,12 +7,12 @@ import * as SchoolsActions from './schools.actions';
 
 @Injectable()
 export class SchoolsEffects {
-  constructor(
-    private actions$: Actions,
-    private schoolsService: SchoolsService
-  ){}
+    constructor(
+        private actions$: Actions,
+        private schoolsService: SchoolsService
+    ) { }
 
-  getAllSchools$ = createEffect(() =>
+    getAllSchools$ = createEffect(() =>
         this.actions$.pipe(
             ofType(SchoolsActions.getAllSchools),
             switchMap(action => {
@@ -21,7 +21,7 @@ export class SchoolsEffects {
                         map(response => {
                             return SchoolsActions.getAllSchoolsSuccess(
                                 {
-                                  schools: response,
+                                    schools: response,
                                 }
                             )
                         }),
@@ -37,7 +37,7 @@ export class SchoolsEffects {
                 return this.schoolsService.createSchool(action.school)
                     .pipe(
                         map(response => {
-                          return SchoolsActions.createSchoolSuccess();
+                            return SchoolsActions.createSchoolSuccess();
                         })
                     )
             })

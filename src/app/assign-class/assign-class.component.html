@@ -1,0 +1,67 @@
+<div class="row justify-content-center no-gutters h-100 w-100">
+    <div class="col-12 col-xl-5">
+        <div class="row h-100 m-0 justify-content-center align-items-center">
+            <div class="col mb-4">
+                <div class="d-flex justify-content-center unselectable mb-4">
+                    <img class="school-logo" src="../../assets/logo/nbu-classbook-black.png" alt="NBU Classbook Logo">
+                </div>
+                <div class="fs-48 main-title-text mb-3">
+                    Assign Class
+                </div>
+
+                <form [formGroup]="assignClassForm" (ngSubmit)="onSubmit()">
+                    <div *ngIf="role === 'ADMIN'">
+                        <div class="mb-3">
+                            <mat-form-field class="w-100">
+                                <mat-label>School</mat-label>
+                                <mat-select name="school" formControlName="school" (selectionChange)="onSchoolChange($event)" required>
+                                    <mat-option *ngFor="let school of schools" [value]="school">
+                                        {{school.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="w-100">
+                            <mat-label>Class</mat-label>
+                            <mat-select name="class" formControlName="class" required>
+                                <mat-option *ngFor="let classTeacher of classTeachers" [value]="classTeacher.classId">
+                                    {{classTeacher.className}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                
+                    <div class="mb-3">
+                        <mat-form-field class="w-100">
+                            <mat-label>Subject</mat-label>
+                            <mat-select name="subject" formControlName="subject" required>
+                                <mat-option *ngFor="let classTeacher of classTeachers" [value]="classTeacher.subjectId">
+                                    {{classTeacher.subjectName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="mb-3">
+                        <mat-form-field class="w-100">
+                            <mat-label>Teacher</mat-label>
+                            <mat-select name="teacher" formControlName="teacher" required>
+                                <mat-option *ngFor="let classTeacher of classTeachers" [value]="classTeacher.teacherId">
+                                    {{classTeacher.teacherName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                
+                    <button mat-raised-button class="w-100 green-nbu-button white-color text-uppercase lg-spaced-text login-button-text"
+                        [disabled]="!assignClassForm.valid" type="submit">
+                        Assign
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

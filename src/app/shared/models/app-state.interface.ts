@@ -14,6 +14,9 @@ import * as fromStatistics from '../../statistics/store/statistics.reducer';
 import * as fromSchedule from '../../schedule/store/schedule.reducer';
 import * as fromPrincipals from '../../principals/store/principals.reducer';
 import * as fromParents from '../../parents/store/parents.reducer';
+import * as fromAssignSchedule from '../../assign-schedule/store/assign-schedule.reducer';
+import * as fromClasses from '../../classes/store/classes.reducer';
+import * as fromAssignClass from '../../assign-class/store/assign-class.reducer';
 
 export interface AppState {
     auth: fromAuth.State,
@@ -32,4 +35,7 @@ export interface AppState {
     schedule: fromSchedule.State,
     principals: fromPrincipals.State,
     parents: fromParents.State,
+    assignSchedule: fromAssignSchedule.State,
+    classes: fromClasses.State,
+    assignClass: fromAssignClass.State,
 };

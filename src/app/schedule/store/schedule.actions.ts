@@ -1,7 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 
 export const getSchedule = createAction(
-  '[Schedule Component] Get Schedule'
+  '[Schedule Component] Get Schedule',
+  props<{
+    role: string,
+    classId?: any
+  }>()
 );
 
 export const getScheduleSuccess = createAction(
@@ -26,7 +30,7 @@ export const createScheduleSuccess = createAction(
 export const deleteSchedule = createAction(
   '[Schedule Component] Delete Schedule',
   props<{
-    scheduleId: any
+    scheduleClassId: any
   }>()
 );
 

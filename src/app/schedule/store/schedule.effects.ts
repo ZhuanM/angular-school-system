@@ -16,7 +16,7 @@ export class ScheduleEffects {
         this.actions$.pipe(
             ofType(ScheduleActions.getSchedule),
             switchMap(action => {
-                return this.scheduleService.getSchedule()
+                return this.scheduleService.getSchedule(action.role, action.classId)
                     .pipe(
                         map(response => {
                             return ScheduleActions.getScheduleSuccess(
@@ -44,17 +44,17 @@ export class ScheduleEffects {
         )
     );
 
-    // deleteSchedule$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(ScheduleActions.deleteSchedule),
-    //         switchMap(action => {
-    //             return this.scheduleService.deleteSchedule(action.scheduleId)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return ScheduleActions.deleteScheduleSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    deleteSchedule$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ScheduleActions.deleteSchedule),
+            switchMap(action => {
+                return this.scheduleService.deleteSchedule(action.scheduleClassId)
+                    .pipe(
+                        map(response => {
+                            return ScheduleActions.deleteScheduleSuccess();
+                        })
+                    )
+            })
+        )
+    );
 }

@@ -52,7 +52,17 @@ export const apiUrls = {
   deleteAbsenceUrl: environment.apiBaseUrl + 'api/absence', // /{absenceId} (DELETE)
   // Subjects
   subjectsUrl: environment.apiBaseUrl + 'api/subject/all', // (GET)
-  getSubjectsByTeacherIdUrl: environment.apiBaseUrl + '/api/teacher', // /{teacherId}/courses (GET) 
-  // TODO Schedule
-  scheduleUrl: environment.apiBaseUrl + 'api/schedule',
+  getSubjectsByTeacherIdUrl: environment.apiBaseUrl + 'api/teacher', // /{teacherId}/courses (GET) 
+  // Schedule
+  scheduleUrl: environment.apiBaseUrl + 'api/termProgram', // ROOT
+  createScheduleUrl: environment.apiBaseUrl + 'api/termProgram', // (POST)
+  getAllSchedulesUrl: environment.apiBaseUrl + 'api/termProgram/all', // (GET)
+  getScheduleByClassIdUrl: environment.apiBaseUrl + 'api/termProgram', // /{classId} (GET)
+  deleteScheduleByClassIdUrl: environment.apiBaseUrl + 'api/termProgram', // /{classId} (DELETE)
+  createScheduleByClassIdUrl: environment.apiBaseUrl + 'api/termProgram', // (POST)
+  // Classes
+  getAllClassesTeachersUrl: environment.apiBaseUrl + 'api/classteachers/all', // (GET)
+  getClassesTeachersBySchoolIdUrl: environment.apiBaseUrl + 'api/classteachers', // /{schoolId}/all (GET)
+  createClassTeachersUrl: environment.apiBaseUrl + 'api/classteachers', // (POST)
+  deleteClassTeachersUrl: environment.apiBaseUrl + 'api/classteachers', // /{classTeacherId} (DELETE)
 }

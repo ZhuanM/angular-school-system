@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TeachersPageGuard implements CanActivate {
+export class ClassesPageGuard implements CanActivate {
   constructor(
     private router: Router,
   ) {

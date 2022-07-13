@@ -88,6 +88,12 @@ import { PrincipalsEffects } from "./principals/store/principals.effects";
 import { PrincipalsComponent } from "./principals/principals.component";
 import { ParentsEffects } from "./parents/store/parents.effects";
 import { ParentsComponent } from "./parents/parents.component";
+import { AssignScheduleComponent } from "./assign-schedule/assign-schedule.component";
+import { AssignScheduleEffects } from "./assign-schedule/store/assign-schedule.effects";
+import { ClassesComponent } from "./classes/classes.component";
+import { ClassesEffects } from "./classes/store/classes.effects";
+import { AssignClassEffects } from "./assign-class/store/assign-class.effects";
+import { AssignClassComponent } from "./assign-class/assign-class.component";
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'fill'
@@ -115,6 +121,9 @@ const appearance: MatFormFieldDefaultOptions = {
     SchoolComponent,
     PrincipalsComponent,
     ParentsComponent,
+    AssignScheduleComponent,
+    ClassesComponent,
+    AssignClassComponent,
   ],
   imports: [
     BrowserModule,
@@ -135,6 +144,9 @@ const appearance: MatFormFieldDefaultOptions = {
       SchoolEffects,
       PrincipalsEffects,
       ParentsEffects,
+      AssignScheduleEffects,
+      ClassesEffects,
+      AssignClassEffects,
     ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

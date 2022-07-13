@@ -9,36 +9,32 @@ export class ScheduleService {
     private http: HttpClient,
   ) {}
 
-  getSchedule() {
-    return this.http.get<any>(
-      apiUrls.scheduleUrl
-    )
+  getSchedule(role: string, classId: any) {
+    if (role == "DIRECTOR" || role == "ADMIN") {
+      return this.http.get<any>(
+        apiUrls.getAllSchedulesUrl
+      )
+    } else if (role == "STUDENT") {
+      return this.http.get<any>(
+        apiUrls.getScheduleByClassIdUrl + '/' + classId
+      )
+    }
   }
 
   createSchedule(schedule: any) {
     return this.http.post<any>(
-      apiUrls.scheduleUrl,
+      apiUrls.createScheduleByClassIdUrl,
       {
-        "email": schedule.email,
-        "fullName": schedule.fullName,
-        "password": schedule.password,
-        "username": schedule.username,
-        "role": "USER"
+        "timestamp": schedule.email,
+        "weekDay": schedule.fullName,
+        "classTeacherId": schedule.password,
       }
     )
   }
 
   deleteSchedule(id: number) {
-    // const httpParams = new HttpParams().set('id', id);
-    // const options = { params: httpParams };
-
-    // return this.http.delete<any>(
-    //   apiUrls.scheduleUrl + '/${id}',
-
-    //   // apiUrls.scheduleUrl + '/' + id,
-
-    //   // apiUrls.scheduleUrl,
-    //   // options
-    // )
+    return this.http.delete<any>(
+      apiUrls.deleteScheduleByClassIdUrl + '/' + id,
+    )
   }
 }

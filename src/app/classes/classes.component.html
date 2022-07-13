@@ -1,9 +1,9 @@
 <div class="row mb-3 fs-28">
-  Schedule:
+  Classes:
 </div>
 <div class="row justify-content-center align-items-center">
   <div class="col p-0">
-      <ejs-grid #normalgrid id='Normalgrid' [dataSource]='schedule' allowPaging='true' allowSorting='true' allowFiltering='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'
+      <ejs-grid #normalgrid id='Normalgrid' [dataSource]='classes' allowPaging='true' allowSorting='true' allowFiltering='true' [pageSettings]='pageSettings' [editSettings]='editSettings' [toolbar]='toolbar'
        (actionBegin)='actionBegin($event)'>
           <e-columns>
               <e-column field='id' allowEditing='false' headerText='ID' width='150' textAlign='center'></e-column>
