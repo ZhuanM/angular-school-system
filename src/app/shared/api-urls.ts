@@ -29,6 +29,7 @@ export const apiUrls = {
   schoolsUrl: environment.apiBaseUrl + 'api/school', // ROOT
   getSchoolsUrl: environment.apiBaseUrl + 'api/school/all', // (GET)
   getSchoolStatisticsUrl: environment.apiBaseUrl + 'api/school', // /{schoolId}/statistics (GET)
+  getAllSchoolStatisticsUrl: environment.apiBaseUrl + 'api/school/all/statistics', // (GET)
   // Grades
   gradesUrl: environment.apiBaseUrl + 'api/grade', // ROOT
   getAllGradesUrl: environment.apiBaseUrl + 'api/grade/all', // (GET)
