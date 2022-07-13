@@ -7,21 +7,21 @@ import * as SubjectsActions from './subjects.actions';
 
 @Injectable()
 export class SubjectsEffects {
-  constructor(
-    private actions$: Actions,
-    private subjectsService: SubjectsService
-  ){}
+    constructor(
+        private actions$: Actions,
+        private subjectsService: SubjectsService
+    ) { }
 
-  getAllSubjects$ = createEffect(() =>
+    getAllSubjects$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(SubjectsActions.getAllSubjects),
+            ofType(SubjectsActions.getSubjects),
             switchMap(action => {
-                return this.subjectsService.getAllSubjects()
+                return this.subjectsService.getSubjects(action.role, action.teacherId)
                     .pipe(
                         map(response => {
-                            return SubjectsActions.getAllSubjectsSuccess(
+                            return SubjectsActions.getSubjectsSuccess(
                                 {
-                                  subjects: response,
+                                    subjects: response,
                                 }
                             )
                         }),
@@ -37,38 +37,24 @@ export class SubjectsEffects {
                 return this.subjectsService.createSubject(action.subject)
                     .pipe(
                         map(response => {
-                          return SubjectsActions.createSubjectSuccess();
+                            return SubjectsActions.createSubjectSuccess();
                         })
                     )
             })
         )
     );
 
-    // updateSubject$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(SubjectsActions.updateSubject),
-    //         switchMap(action => {
-    //             return this.subjectsService.updateSubject(action.subject)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return SubjectsActions.updateSubjectSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
-
-    // deleteSubject$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(SubjectsActions.deleteSubject),
-    //         switchMap(action => {
-    //             return this.subjectsService.deleteSubject(action.subjectId)
-    //                 .pipe(
-    //                     map(response => {
-    //                         return SubjectsActions.deleteSubjectSuccess();
-    //                     })
-    //                 )
-    //         })
-    //     )
-    // );
+    deleteSubject$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(SubjectsActions.deleteSubject),
+            switchMap(action => {
+                return this.subjectsService.deleteSubject(action.subjectId)
+                    .pipe(
+                        map(response => {
+                            return SubjectsActions.deleteSubjectSuccess();
+                        })
+                    )
+            })
+        )
+    );
 }

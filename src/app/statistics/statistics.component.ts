@@ -6,7 +6,7 @@ import { appLoading } from '../loader/store/loader.actions';
 import { BaseComponent } from '../shared/base.component';
 import { AppState } from '../shared/models/app-state.interface';
 import { getStatistics } from './store/statistics.actions';
-import { statistics } from './store/statistics.selectors';
+import { averageGrade, totalStudents, totalTeachers } from './store/statistics.selectors';
 
 @Component({
   selector: 'app-statistics',
@@ -14,19 +14,42 @@ import { statistics } from './store/statistics.selectors';
   styleUrls: ['./statistics.component.scss']
 })
 export class StatisticsComponent extends BaseComponent {
-  readonly statistics$: Observable<any> = this.store.pipe(select(statistics), takeUntil(this.destroyed$));
+  readonly averageGrade$: Observable<any> = this.store.pipe(select(averageGrade), takeUntil(this.destroyed$));
+  readonly totalStudents$: Observable<any> = this.store.pipe(select(totalStudents), takeUntil(this.destroyed$));
+  readonly totalTeachers$: Observable<any> = this.store.pipe(select(totalTeachers), takeUntil(this.destroyed$));
   public statistics: any;
+
+  public role: string;
+
+  public totalTeachers: any;
+  public totalStudents: any;
+  public averageGrade: any;
   
   constructor(private store: Store<AppState>) { 
     super();
 
-    this.statistics$.pipe(takeUntil(this.destroyed$)).subscribe(statistics => {
-      if (statistics) {
-        this.statistics = statistics;
+    this.role = sessionStorage.getItem('role');
+
+    this.averageGrade$.pipe(takeUntil(this.destroyed$)).subscribe(averageGrade => {
+      if (averageGrade) {
+        this.averageGrade = averageGrade;
       }
     });
 
+    this.totalStudents$.pipe(takeUntil(this.destroyed$)).subscribe(totalStudents => {
+      if (totalStudents) {
+        this.totalStudents = totalStudents;
+      }
+    });
+
+    this.totalTeachers$.pipe(takeUntil(this.destroyed$)).subscribe(totalTeachers => {
+      if (totalTeachers) {
+        this.totalTeachers = totalTeachers;
+      }
+    });
+
+    const schoolId = sessionStorage.getItem('schoolId');
     this.store.dispatch(appLoading({ loading: true }));
-    this.store.dispatch(getStatistics());
+    this.store.dispatch(getStatistics({ schoolId: schoolId }));
   }
 }

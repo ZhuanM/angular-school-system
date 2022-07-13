@@ -9,9 +9,9 @@ export class StatisticsService {
     private http: HttpClient,
   ) {}
 
-  getStatistics() {
+  getStatistics(schoolId: any) {
     return this.http.get<any>(
-      apiUrls.statisticsUrl
+      apiUrls.getSchoolStatisticsUrl + '/' + schoolId + '/statistics'
     )
   }
 }

@@ -16,12 +16,14 @@ export class StatisticsEffects {
         this.actions$.pipe(
             ofType(StatisticsActions.getStatistics),
             switchMap(action => {
-                return this.statisticsService.getStatistics()
+                return this.statisticsService.getStatistics(action.schoolId)
                     .pipe(
                         map(response => {
                             return StatisticsActions.getStatisticsSuccess(
                                 {
-                                    statistics: response,
+                                    averageGrade: response.averageGrade,
+                                    totalStudents: response.totalStudents,
+                                    totalTeachers: response.totalTeachers
                                 }
                             )
                         }),

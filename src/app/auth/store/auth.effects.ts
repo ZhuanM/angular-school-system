@@ -24,7 +24,7 @@ export class AuthEffects {
             this.setSessionStorageData(response);
             sessionStorage.setItem('role', response.role);
             sessionStorage.setItem('accountLocked', response.accountLocked);
-            sessionStorage.setItem('id', response.id);
+            sessionStorage.setItem('id', response.userId);
             return AuthActions.authSuccess(
               {
                 accessToken: response.jwtToken,

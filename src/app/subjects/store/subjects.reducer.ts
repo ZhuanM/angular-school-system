@@ -14,7 +14,7 @@ const _subjectsReducer = createReducer(
   initialState,
   
   on(
-    SubjectsActions.getAllSubjectsSuccess,
+    SubjectsActions.getSubjectsSuccess,
     (state, action) => ({
       ...state,
       subjects: action.subjects

@@ -28,6 +28,7 @@ export const apiUrls = {
   // Schools
   schoolsUrl: environment.apiBaseUrl + 'api/school', // ROOT
   getSchoolsUrl: environment.apiBaseUrl + 'api/school/all', // (GET)
+  getSchoolStatisticsUrl: environment.apiBaseUrl + 'api/school', // /{schoolId}/statistics (GET)
   // Grades
   gradesUrl: environment.apiBaseUrl + 'api/grade', // ROOT
   getAllGradesUrl: environment.apiBaseUrl + 'api/grade/all', // (GET)
@@ -49,9 +50,8 @@ export const apiUrls = {
   updateAbsenceUrl: environment.apiBaseUrl + 'api/absence', // /{absenceId} (PATCH)
   deleteAbsenceUrl: environment.apiBaseUrl + 'api/absence', // /{absenceId} (DELETE)
   // Subjects
-  subjectsUrl: environment.apiBaseUrl + 'api/subject',
-  // TODO Statistics
-  statisticsUrl: environment.apiBaseUrl + 'api/statistic',
+  subjectsUrl: environment.apiBaseUrl + 'api/subject/all', // (GET)
+  getSubjectsByTeacherIdUrl: environment.apiBaseUrl + '/api/teacher', // /{teacherId}/courses (GET) 
   // TODO Schedule
   scheduleUrl: environment.apiBaseUrl + 'api/schedule',
 }

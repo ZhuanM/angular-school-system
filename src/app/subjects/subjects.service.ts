@@ -9,49 +9,34 @@ export class SubjectsService {
     private http: HttpClient,
   ) {}
 
-  getAllSubjects() {
-    return this.http.get<any>(
-      apiUrls.subjectsUrl
-    )
+  getSubjects(role: string, teacherId?: any) {
+    if (role == "TEACHER") {
+      return this.http.get<any>(
+        apiUrls.getSubjectsByTeacherIdUrl + '/' + teacherId + '/courses'
+      )
+    } else if (role == "DIRECTOR") {
+      return this.http.get<any>(
+        apiUrls.subjectsUrl
+      )
+    } else if (role == "ADMIN") {
+      return this.http.get<any>(
+        apiUrls.subjectsUrl
+      )
+    }
   }
 
   createSubject(subject: any) {
     return this.http.post<any>(
       apiUrls.subjectsUrl,
       {
-        "email": subject.email,
-        "fullName": subject.fullName,
-        "password": subject.password,
-        "username": subject.username,
-        "role": "USER"
+        "name": subject.name,
       }
     )
   }
 
-  updateSubject(id: number, subject: any) {
-    // return this.http.patch<any>(
-    //   apiUrls.subjectsUrl + '/${id}',
-    //   {
-    //     "firstName": subject.firstName,
-    //     "lastName": subject.lastName,
-    //     "username": subject.username,
-    //     "school": subject.school,
-    //     // "role": "USER"
-    //   }
-    // )
-  }
-
   deleteSubject(id: number) {
-    // const httpParams = new HttpParams().set('id', id);
-    // const options = { params: httpParams };
-
-    // return this.http.delete<any>(
-    //   apiUrls.subjectsUrl + '/${id}',
-
-    //   // apiUrls.subjectsUrl + '/' + id,
-
-    //   // apiUrls.subjectsUrl,
-    //   // options
-    // )
+    return this.http.delete<any>(
+      apiUrls.subjectsUrl + '/' + id,
+    )
   }
 }

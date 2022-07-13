@@ -1,11 +1,15 @@
 import { createAction, props } from '@ngrx/store';
 
-export const getAllSubjects = createAction(
-  '[Subjects Component] Get All Subjects'
+export const getSubjects = createAction(
+  '[Subjects Component] Get Subjects',
+  props<{
+    role: string,
+    teacherId?: any
+  }>()
 );
 
-export const getAllSubjectsSuccess = createAction(
-  '[Subjects Component] Get All Subjects Success',
+export const getSubjectsSuccess = createAction(
+  '[Subjects Component] Get Subjects Success',
   props<{
     subjects: any
   }>()
@@ -20,17 +24,6 @@ export const createSubject = createAction(
 
 export const createSubjectSuccess = createAction(
   '[Subjects Component] Create Subject Success',
-);
-
-export const updateSubject = createAction(
-  '[Subjects Component] Update Subject',
-  props<{
-    subject: any
-  }>()
-);
-
-export const updateSubjectSuccess = createAction(
-  '[Subjects Component] Update Subject Success',
 );
 
 export const deleteSubject = createAction(

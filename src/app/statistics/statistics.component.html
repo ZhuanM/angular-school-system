@@ -1,9 +1,10 @@
-<div class="row justify-content-center no-gutters h-100 w-100">
+<!-- PRINCIPAL/DIRECTOR -->
+<div *ngIf="role == 'DIRECTOR'" class="row justify-content-center no-gutters h-100 w-100">
     <div class="col-12 col-xl-5">
         <div class="row h-100 m-0 justify-content-center align-items-center">
             <div class="col mb-4">
                 <div class="d-flex justify-content-center unselectable mb-4">
-                    <img class="login-logo" src="../../assets/logo/logo_transparent-black.png" alt="NBU Classbook Logo">
+                    <img class="school-logo" src="../../assets/logo/nbu-classbook-black.png" alt="NBU Classbook Logo">
                 </div>
                 <div class="fs-48 main-title-text mb-3">
                     Statistics
@@ -12,11 +13,23 @@
                     Statistic details
                 </div>
 
-                <!-- <mat-form-field class="w-100">
-                    <mat-label>Name</mat-label>
-                    <input matInput type="text" [(ngModel)]="schoolName" readonly>
-                </mat-form-field> -->
+                <mat-form-field class="w-100">
+                    <mat-label>Average Grade</mat-label>
+                    <input matInput type="text" [(ngModel)]="averageGrade" readonly>
+                </mat-form-field>
+
+                <mat-form-field class="w-100">
+                    <mat-label>TotalTeachers</mat-label>
+                    <input matInput type="text" [(ngModel)]="totalTeachers" readonly>
+                </mat-form-field>
+
+                <mat-form-field class="w-100">
+                    <mat-label>Total Students</mat-label>
+                    <input matInput type="text" [(ngModel)]="totalStudents" readonly>
+                </mat-form-field>
             </div>
         </div>
     </div>
 </div>
+
+<!-- ADMIN -->
